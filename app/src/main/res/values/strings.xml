@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">MBiz</string>
+    <string name="facebook_app_id">517105645320488</string>
+    <string name="edittext_hint">USER NAME<font size="15"></font></string>
+    <string name="logout"><u>LOG OUT</u></string>
+    <string name="forgot_password"><u>FORGOT PASSWORD</u></string>
+
+    <string-array name="categories_array">
+        <item>Select Categories...</item>
+        <item>Restaurant</item>
+        <item>Activities</item>
+        <item>Health and Beauty</item>
+        <item>Take Away</item>
+    </string-array>
+</resources>
