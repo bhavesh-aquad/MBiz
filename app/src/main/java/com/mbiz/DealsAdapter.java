@@ -1,4 +1,4 @@
-package com.darshan.mbiz;
+package com.mbiz;
 
 import android.content.Context;
 import android.content.Intent;

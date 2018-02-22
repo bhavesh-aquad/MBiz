@@ -1,4 +1,4 @@
-package com.darshan.mbiz;
+package com.mbiz;
 
 import android.app.ActionBar;
 import android.content.Intent;
@@ -34,8 +34,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import static android.icu.lang.UCharacter.GraphemeClusterBreak.V;
-import static com.darshan.mbiz.R.drawable.logo1;
-import static com.darshan.mbiz.R.styleable.MenuItem;
+import static com.mbiz.R.drawable.logo1;
+import static com.mbiz.R.styleable.MenuItem;
 
 public class HomeActivity extends AppCompatActivity{
 

@@ -1,9 +1,10 @@
 <resources>
     <string name="app_name">MBiz</string>
-    <string name="facebook_app_id">517105645320488</string>
     <string name="edittext_hint">USER NAME<font size="15"></font></string>
     <string name="logout"><u>LOG OUT</u></string>
     <string name="forgot_password"><u>FORGOT PASSWORD</u></string>
+    <string name="facebook_app_id">1772988632996873</string>
+    <string name="fb_login_protocol_scheme">fb1772988632996873</string>
 
     <string-array name="categories_array">
         <item>Select Categories...</item>

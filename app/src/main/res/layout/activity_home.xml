@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/background"
     android:orientation="vertical"
-    tools:context="com.darshan.mbiz.HomeActivity">
+    tools:context="com.mbiz.HomeActivity">
     <!--android:background="@drawable/home_screen_bg"-->
 
     <!--<include layout="@layout/toolbar" />-->

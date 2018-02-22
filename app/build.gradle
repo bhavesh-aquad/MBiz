@@ -1,12 +1,20 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.0"
+    signingConfigs {
+        config {
+            keyAlias 'MBiz'
+            keyPassword '111111'
+            storeFile file('D:/Android/Projects/MBiz/MBiz_key.jks')
+            storePassword '111111'
+        }
+    }
+    compileSdkVersion 27
+    buildToolsVersion '27.0.2'
     defaultConfig {
-        applicationId "com.darshan.mbiz"
+        applicationId "com.mbiz"
         minSdkVersion 17
-        targetSdkVersion 26
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -16,6 +24,9 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        debug {
+            signingConfig signingConfigs.config
+        }
     }
 }
 repositories {
@@ -24,21 +35,20 @@ repositories {
 
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-
     compile 'fr.avianey.com.viewpagerindicator:library:2.4.1.1@aar'
-    compile 'com.facebook.android:facebook-android-sdk:4.3.0'
-    compile 'com.android.support:appcompat-v7:26.+'
+    //    compile 'com.facebook.android:facebook-android-sdk:4.3.0'
+    implementation 'com.facebook.android:facebook-login:[4,5)'
+    compile 'com.android.support:appcompat-v7:27.0.2'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.android.support:design:26.+'
-    compile 'com.android.support:support-v4:26.+'
-    compile 'com.android.support:cardview-v7:26.+'
-    compile 'com.android.support:recyclerview-v7:26.+'
+    compile 'com.android.support:design:27.0.2'
+    //    compile 'com.android.support:support-v4:27.0.2'
+    compile 'com.android.support:cardview-v7:27.0.2'
+    compile 'com.android.support:recyclerview-v7:27.0.2'
     compile 'com.android.volley:volley:1.1.0'
-    compile "com.squareup.picasso:picasso:2.5.2"
+    compile 'com.squareup.picasso:picasso:2.5.2'
     testCompile 'junit:junit:4.12'
-
 }

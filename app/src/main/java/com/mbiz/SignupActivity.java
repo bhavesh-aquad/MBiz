@@ -1,4 +1,4 @@
-package com.darshan.mbiz;
+package com.mbiz;
 
 import android.app.ActionBar;
 import android.app.AlertDialog;
@@ -27,23 +27,17 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import static android.R.attr.font;
-import static com.darshan.mbiz.R.id.et_phone;
-import static com.darshan.mbiz.R.id.et_signup_email;
-import static com.darshan.mbiz.R.id.et_signup_password;
+import static com.mbiz.R.id.et_phone;
+import static com.mbiz.R.id.et_signup_email;
+import static com.mbiz.R.id.et_signup_password;
 
 public class SignupActivity extends AppCompatActivity {
-    TextView tv_signup;
     Button sign_up_btn;
-    EditText  et_first_name,et_last_name,et_phone,et_address, et_signup_email, et_signup_password, et_zip;
-    //TextInputLayout input_email_id,  input_password_id,  input_username_id;
+    EditText et_first_name, et_last_name, et_phone, et_address, et_signup_email, et_signup_password, et_zip;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // get action bar
-        //ActionBar actionBar = getActionBar();
-        // Enabling Up / Back navigation
-        //actionBar.setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.activity_signup);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -52,29 +46,29 @@ public class SignupActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(null);
 
         sign_up_btn = (Button) findViewById(R.id.sign_up_btn);
-        et_first_name=(EditText)findViewById(R.id.et_first_name);
-        et_last_name=(EditText)findViewById(R.id.et_last_name);
-        et_phone=(EditText)findViewById(R.id.et_phone);
-        et_address=(EditText)findViewById(R.id.et_address);
-        et_zip=(EditText)findViewById(R.id.et_zip);
-        et_signup_email=(EditText)findViewById(R.id.et_signup_email);
-        et_signup_password=(EditText)findViewById(R.id. et_signup_password);
+        et_first_name = (EditText) findViewById(R.id.et_first_name);
+        et_last_name = (EditText) findViewById(R.id.et_last_name);
+        et_phone = (EditText) findViewById(R.id.et_phone);
+        et_address = (EditText) findViewById(R.id.et_address);
+        et_zip = (EditText) findViewById(R.id.et_zip);
+        et_signup_email = (EditText) findViewById(R.id.et_signup_email);
+        et_signup_password = (EditText) findViewById(R.id.et_signup_password);
 
         sign_up_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if(et_first_name.getText().toString().length()==0)
+                if (et_first_name.getText().toString().length() == 0)
                     et_first_name.setError("First Name is Required");
-                else if(et_last_name.getText().toString().length()==0)
+                else if (et_last_name.getText().toString().length() == 0)
                     et_last_name.setError("Last Name is Required");
-                else if(et_phone.getText().toString().length()==0)
+                else if (et_phone.getText().toString().length() == 0)
                     et_phone.setError("Phone Number is Required");
-                else if(et_address.getText().toString().length()==0)
+                else if (et_address.getText().toString().length() == 0)
                     et_address.setError("Address is Required");
-                else if(et_signup_email.getText().toString().length()==0)
+                else if (et_signup_email.getText().toString().length() == 0)
                     et_signup_email.setError("Email is required");
-                else if (et_signup_password.getText().toString().length()==0)
+                else if (et_signup_password.getText().toString().length() == 0)
                     et_signup_password.setError("Password Is Required");
                 else {
                     final String fname = et_first_name.getText().toString();
@@ -92,11 +86,11 @@ public class SignupActivity extends AppCompatActivity {
                                 JSONObject jsonResponse = new JSONObject(response);
                                 String status = jsonResponse.optString("status");
 
-                                if (status.equals("200")){
+                                if (status.equals("200")) {
                                     // TODO Auto-generated method stub
                                     Intent signUp = new Intent(SignupActivity.this, LoginActivity.class);
                                     startActivity(signUp);
-                                }else {
+                                } else {
                                     AlertDialog.Builder builder = new AlertDialog.Builder(SignupActivity.this);
                                     builder.setMessage("Signup Failed")
                                             .setNegativeButton("Retry", null)
@@ -104,7 +98,7 @@ public class SignupActivity extends AppCompatActivity {
                                             .show();
                                 }
 
-                            }catch (Exception e){
+                            } catch (Exception e) {
                                 e.printStackTrace();
                             }
                         }
@@ -119,24 +113,11 @@ public class SignupActivity extends AppCompatActivity {
             }
         });
 
-        //TextInputLayout   input_username_id = (TextInputLayout)    findViewById(R.id.input_username_id);
-        //font = Typeface.createFromAsset(getAssets(), "fonts/ir.ttf");
-        //input_username_id .setTypeface(font);
-
-        //Typeface newTypeface = Typeface.createFromAsset(getAssets(), "AguafinaScript-Regular.ttf");
-        //CustomHint customHint = new CustomHint(newTypeface, null, Typeface.BOLD_ITALIC, 60f);
-        //        CustomHint customHint = new CustomHint(newTypeface, "Enter some text", Typeface.BOLD_ITALIC);
-        //        CustomHint customHint = new CustomHint(newTypeface, "Enter some text", 60f);
-        //        CustomHint customHint = new CustomHint("Enter some text", Typeface.BOLD_ITALIC, 60f);
-        //        CustomHint customHint = new CustomHint("Enter some text", Typeface.BOLD_ITALIC);
-        //        CustomHint customHint = new CustomHint("Enter some text", 60f);
-
-        //et_signup_password.setHint(customHint);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId()== android.R.id.home) {
+        if (item.getItemId() == android.R.id.home) {
             finish();
         }
 

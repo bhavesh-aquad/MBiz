@@ -1,4 +1,4 @@
-package com.darshan.mbiz;
+package com.mbiz;
 
 import android.app.Application;
 import android.content.pm.PackageInfo;
@@ -24,7 +24,7 @@ public class MyApplication extends Application {
     private void printHashKey() {
         try {
             PackageInfo info = getPackageManager().getPackageInfo(
-                    "com.darshan.mbiz",
+                    "com.mbiz",
                     PackageManager.GET_SIGNATURES);
             for (Signature signature : info.signatures) {
                 MessageDigest md = MessageDigest.getInstance("SHA");

@@ -1,4 +1,4 @@
-package com.darshan.mbiz;
+package com.mbiz;
 
 import android.graphics.Typeface;
 import android.text.SpannableString;

@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="#464675"
     android:orientation="vertical"
-    tools:context="com.darshan.mbiz.LoginActivity">
+    tools:context="com.mbiz.LoginActivity">
 
     <!--<include layout="@layout/toolbar"/>-->
 

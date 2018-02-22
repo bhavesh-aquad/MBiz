@@ -1,4 +1,4 @@
-package com.darshan.mbiz;
+package com.mbiz;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -50,24 +50,10 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         FacebookSdk.sdkInitialize(getApplicationContext());
-        boolean loggedIn = AccessToken.getCurrentAccessToken() == null;
         LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile"));
-       /* if (BuildConfig.DEBUG) {
-            FacebookSdk.setIsDebugEnabled(true);
-            FacebookSdk.addLoggingBehavior(LoggingBehavior.INCLUDE_ACCESS_TOKENS);
-        }*/
         setContentView(R.layout.activity_login);
         initialfileControls();
         loginwithFB();
-
-        /*Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        //toolbar.setLogo(R.drawable.logo);
-        getSupportActionBar().setTitle(null);*/
-
-
 
         login_txtview=(TextView)findViewById(R.id.login_txtview);
         et_login_username=(EditText)findViewById(R.id.et_login_username);
@@ -82,12 +68,6 @@ public class LoginActivity extends AppCompatActivity {
         String titleId="Signing in...";
         mProgress.setTitle(titleId);
         mProgress.setMessage("Please Wait...");
-
-        //et_login_username.clearFocus();
-        //et_login_password.clearFocus();
-
-
-
         login_txtview.setText(Html.fromHtml("<p>"+
                  " New User ?" +
                 "           "+
@@ -95,12 +75,9 @@ public class LoginActivity extends AppCompatActivity {
                 " Here"+
                 "</p>"));
 
-       //ClickableSpan Signin = new ClickableSpan() {
-
         sign_in_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Toast.makeText(getApplicationContext(), "Sign in Clicked", Toast.LENGTH_SHORT).show();
 
                 if (et_login_username.getText().toString().length() == 0)
                     et_login_username.setError("User name is required!");
@@ -118,8 +95,6 @@ public class LoginActivity extends AppCompatActivity {
                             try {
                                 JSONObject jsonResponse = new JSONObject(response);
                                 String status = jsonResponse.optString("status");
-                                //String
-                                // message = jsonResponse.optString("message");
 
                                 if(status.equals("200")){
                                     mProgress.dismiss();
@@ -197,21 +172,9 @@ public class LoginActivity extends AppCompatActivity {
         login_txtview.setText(spannableString, TextView.BufferType.SPANNABLE);
     }
 
-    //Typeface newTypeface = Typeface.createFromAsset(getAssets(), "AguafinaScript-Regular.ttf");
-    //CustomHint customHint = new CustomHint(newTypeface, null, Typeface.BOLD_ITALIC, 60f);
-    //        CustomHint customHint = new CustomHint(newTypeface, "Enter some text", Typeface.BOLD_ITALIC);
-    //        CustomHint customHint = new CustomHint(newTypeface, "Enter some text", 60f);
-    //        CustomHint customHint = new CustomHint("Enter some text", Typeface.BOLD_ITALIC, 60f);
-    //        CustomHint customHint = new CustomHint("Enter some text", Typeface.BOLD_ITALIC);
-    //        CustomHint customHint = new CustomHint("Enter some text", 60f);
-
-        //et_signup_password.setHint(customHint);
-
     private void initialfileControls(){
         callbackManager = CallbackManager.Factory.create();
-        //textView = (TextView)findViewById(R.id.textView);
         login_button = (LoginButton)findViewById(R.id.login_button);
-        //imageView = (ImageView)findViewById(R.id.imageView);
     }
 
     private void loginwithFB() {
@@ -219,20 +182,13 @@ public class LoginActivity extends AppCompatActivity {
         LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                //textView.setText("Login Successful\n" );
-                //Toast.makeText(getApplicationContext(), "LOGGED IN SUCCESSFUL", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-                //intent.putExtra("Fb_id", user.getId());
-                //intent.putExtra("user_name", user.getName());
                 startActivity(intent);
-
             }
 
             @Override
             public void onCancel() {
-                //textView.setText("Login Cancel");
                 Toast.makeText(getApplicationContext(), "LOGIN CANCEL", Toast.LENGTH_SHORT).show();
-
             }
 
             @Override
@@ -249,47 +205,3 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 }
-           /* accessTokenTracker = new AccessTokenTracker() {
-                @Override
-                protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken currentAccessToken) {
-
-                }
-            };
-
-            profileTracker = new ProfileTracker() {
-                @Override
-                protected void onCurrentProfileChanged(Profile oldProfile, Profile currentProfile) {
-                    displayMessage(currentProfile);
-
-                }
-            };
-
-            accessTokenTracker.startTracking();
-            profileTracker.startTracking();
-
-            callback = new FacebookCallback<LoginResult>() {
-                @Override
-                public void onSuccess(LoginResult loginResult) {
-                    AccessToken accessToken=loginResult.getAccessToken();
-                    Profile profile = Profile.getCurrentProfile();
-
-                    displayMessage(profile);
-                }
-
-                @Override
-                public void onCancel() {
-
-                }
-
-                @Override
-                public void onError(FacebookException error) {
-
-                }
-            };
-
-            login_button.setReadPermissions("user_friends");
-            login_button.registerCallback(callbackManager, callback);
-        } */
-
-
-

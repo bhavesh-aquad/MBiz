@@ -8,7 +8,7 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:background="#464675"
     android:orientation="vertical"
-    tools:context="com.darshan.mbiz.SignupActivity"
+    tools:context="com.mbiz.SignupActivity"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
 

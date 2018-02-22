@@ -1,4 +1,4 @@
-package com.darshan.mbiz;
+package com.mbiz;
 
 /**
  * Created by Aquad on 26-12-2017.
