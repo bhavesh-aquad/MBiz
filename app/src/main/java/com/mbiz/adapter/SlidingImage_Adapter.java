@@ -1,4 +1,4 @@
-package com.mbiz;
+package com.mbiz.adapter;
 
 import android.content.Context;
 import android.os.Parcelable;
@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+
+import com.mbiz.R;
 
 import java.util.ArrayList;
 

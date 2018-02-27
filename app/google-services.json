@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "138978153487",
+    "firebase_url": "https://mbiz-6c51b.firebaseio.com",
+    "project_id": "mbiz-6c51b",
+    "storage_bucket": "mbiz-6c51b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:138978153487:android:651a0c12621fdb4f",
+        "android_client_info": {
+          "package_name": "com.mbiz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "138978153487-h06tqdbdnnoe0p6vp7i59omofb1r7ebd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mbiz",
+            "certificate_hash": "6038a529a64834734835d643514fe6d860e6b9ae"
+          }
+        },
+        {
+          "client_id": "138978153487-20edsj76m739iu9emdbsvnnjuj7ehld3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgM0_kl0KmIwkZ7aOvwaC_Z474pcEJsqk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "138978153487-20edsj76m739iu9emdbsvnnjuj7ehld3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

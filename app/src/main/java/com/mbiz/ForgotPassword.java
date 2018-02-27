@@ -16,14 +16,8 @@ public class ForgotPassword extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password);
 
-        tv_send_code = (TextView) findViewById(R.id.tv_send_code);
-        btn_send = (Button) findViewById(R.id.btn_send);
-
-        /**Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle(null);*/
+        tv_send_code = findViewById(R.id.tv_send_code);
+        btn_send = findViewById(R.id.btn_send);
 
         btn_send.setOnClickListener(new View.OnClickListener() {
             @Override

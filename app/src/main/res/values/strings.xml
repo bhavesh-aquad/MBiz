@@ -5,6 +5,9 @@
     <string name="forgot_password"><u>FORGOT PASSWORD</u></string>
     <string name="facebook_app_id">1772988632996873</string>
     <string name="fb_login_protocol_scheme">fb1772988632996873</string>
+    <string name="timeout">Connection timed-out, please try again.</string>
+    <string name="something_wrong">Something went wrong</string>
+    <string name="connect_working_internet">Please connect to a working internet connection</string>
 
     <string-array name="categories_array">
         <item>Select Categories...</item>

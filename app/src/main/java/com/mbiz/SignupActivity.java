@@ -1,37 +1,21 @@
 package com.mbiz;
 
-import android.app.ActionBar;
-import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
-import android.graphics.Typeface;
-import android.support.design.widget.TextInputLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
-import android.text.SpannableString;
-import android.text.Spanned;
-import android.text.TextPaint;
-import android.text.style.MetricAffectingSpan;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.toolbox.Volley;
+import com.loopj.android.http.RequestParams;
+import com.mbiz.application.AppConstants;
+import com.mbiz.application.MyApp;
 
-import org.json.JSONException;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
-import static android.R.attr.font;
-import static com.mbiz.R.id.et_phone;
-import static com.mbiz.R.id.et_signup_email;
-import static com.mbiz.R.id.et_signup_password;
-
-public class SignupActivity extends AppCompatActivity {
+public class SignupActivity extends CustomActivity implements CustomActivity.ResponseCallback {
     Button sign_up_btn;
     EditText et_first_name, et_last_name, et_phone, et_address, et_signup_email, et_signup_password, et_zip;
 
@@ -39,75 +23,47 @@ public class SignupActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle(null);
 
-        sign_up_btn = (Button) findViewById(R.id.sign_up_btn);
-        et_first_name = (EditText) findViewById(R.id.et_first_name);
-        et_last_name = (EditText) findViewById(R.id.et_last_name);
-        et_phone = (EditText) findViewById(R.id.et_phone);
-        et_address = (EditText) findViewById(R.id.et_address);
-        et_zip = (EditText) findViewById(R.id.et_zip);
-        et_signup_email = (EditText) findViewById(R.id.et_signup_email);
-        et_signup_password = (EditText) findViewById(R.id.et_signup_password);
+        setResponseListener(this);
+
+        sign_up_btn = findViewById(R.id.sign_up_btn);
+        et_first_name = findViewById(R.id.et_first_name);
+        et_last_name = findViewById(R.id.et_last_name);
+        et_phone = findViewById(R.id.et_phone);
+        et_address = findViewById(R.id.et_address);
+        et_zip = findViewById(R.id.et_zip);
+        et_signup_email = findViewById(R.id.et_signup_email);
+        et_signup_password = findViewById(R.id.et_signup_password);
 
         sign_up_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if (et_first_name.getText().toString().length() == 0)
+              /*  if (et_first_name.getText().toString().length() == 0)
                     et_first_name.setError("First Name is Required");
                 else if (et_last_name.getText().toString().length() == 0)
                     et_last_name.setError("Last Name is Required");
                 else if (et_phone.getText().toString().length() == 0)
                     et_phone.setError("Phone Number is Required");
-                else if (et_address.getText().toString().length() == 0)
+               /* else if (et_address.getText().toString().length() == 0)
                     et_address.setError("Address is Required");
-                else if (et_signup_email.getText().toString().length() == 0)
+                else */
+                if (et_signup_email.getText().toString().length() == 0)
                     et_signup_email.setError("Email is required");
                 else if (et_signup_password.getText().toString().length() == 0)
                     et_signup_password.setError("Password Is Required");
                 else {
-                    final String fname = et_first_name.getText().toString();
-                    final String lname = et_last_name.getText().toString();
-                    final String email = et_signup_email.getText().toString();
-                    final String password = et_signup_password.getText().toString();
-                    final String address = et_address.getText().toString();
-                    final String postcode = et_zip.getText().toString();
-                    final String mobile = et_phone.getText().toString();
 
-                    Response.Listener<String> responseListener = new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-                            try {
-                                JSONObject jsonResponse = new JSONObject(response);
-                                String status = jsonResponse.optString("status");
+                    RequestParams p = new RequestParams();
+                    p.put("fname", et_first_name.getText().toString());
+                    p.put("lname", et_last_name.getText().toString());
+                    p.put("email", et_signup_email.getText().toString());
+                    p.put("password", et_signup_password.getText().toString());
+                    p.put("address", et_address.getText().toString());
+                    p.put("postcode", et_zip.getText().toString());
+                    p.put("mobile", et_phone.getText().toString());
 
-                                if (status.equals("200")) {
-                                    // TODO Auto-generated method stub
-                                    Intent signUp = new Intent(SignupActivity.this, LoginActivity.class);
-                                    startActivity(signUp);
-                                } else {
-                                    AlertDialog.Builder builder = new AlertDialog.Builder(SignupActivity.this);
-                                    builder.setMessage("Signup Failed")
-                                            .setNegativeButton("Retry", null)
-                                            .create()
-                                            .show();
-                                }
-
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    };
-
-                    SignUpRequest signUpRequest = new SignUpRequest(fname, lname, email, password, address,
-                            postcode, mobile, responseListener);
-                    RequestQueue queue = Volley.newRequestQueue(SignupActivity.this);
-                    queue.add(signUpRequest);
+                    postCall(getContext(), AppConstants.BASE_URL + "signup", p, "Registering you...", 1);
                 }
 
             }
@@ -122,5 +78,35 @@ public class SignupActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onJsonObjectResponseReceived(JSONObject o, int callNumber) {
+        if (callNumber == 1) {
+            if (o.optInt("status") == 200) {
+//                MyApp.showMassage(getContext(), "Registered successfully");
+//                MyApp.setStatus(AppConstants.IS_LOGIN, true);
+//                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+//                startActivity(intent);
+//                finishAffinity();
+                MyApp.popFinishableMessage("MBiz", "You have registered successfully, Please login to use the app.\nThank you.", SignupActivity.this);
+            } else {
+                MyApp.popMessage("Error", o.optString("message"), getContext());
+            }
+        }
+    }
+
+    @Override
+    public void onJsonArrayResponseReceived(JSONArray a, int callNumber) {
+
+    }
+
+    @Override
+    public void onErrorReceived(String error) {
+        MyApp.popMessage("Error", error, getContext());
+    }
+
+    private Context getContext() {
+        return SignupActivity.this;
     }
 }

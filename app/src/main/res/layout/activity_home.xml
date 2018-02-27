@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,70 +7,47 @@
     android:background="@color/background"
     android:orientation="vertical"
     tools:context="com.mbiz.HomeActivity">
-    <!--android:background="@drawable/home_screen_bg"-->
-
-    <!--<include layout="@layout/toolbar" />-->
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
+
         <TextView
+            android:id="@+id/logout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:id="@+id/logout"
             android:layout_alignParentRight="true"
+            android:layout_gravity="center"
+            android:layout_marginRight="5dp"
+            android:drawableTop="@drawable/ic_logout"
+            android:padding="8dp"
             android:text="@string/logout"
-            android:textSize="@dimen/dim_14"
-            android:textStyle="bold"
-            android:textColor="@color/red"/>
-    </RelativeLayout>
+            android:textColor="@color/red"
+            android:textSize="10sp"
+            android:textStyle="bold" />
 
-    <ImageView
-        android:id="@+id/bt_magic_biz"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/dim_20"
-        android:src="@drawable/text"
-        android:paddingRight="@dimen/dim_4"
-        android:paddingLeft="@dimen/dim_4"
-        android:gravity="center"
-        android:textColor="@color/cyan" />
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dim_150"
-        android:background="@drawable/slider_bg">
-
-        <android.support.v4.view.ViewPager
-            android:id="@+id/pager"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentTop="true"
-            android:background="@color/background"/>
-
-        <com.viewpagerindicator.CirclePageIndicator
-            android:id="@+id/indicator"
-            android:layout_width="fill_parent"
+        <ImageView
+            android:id="@+id/bt_magic_biz"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:gravity="bottom"
-            android:padding="@dimen/dim_5"
-            app:centered="true"
-            app:fillColor="#ff0099"
-            app:pageColor="#FF0000"
-            app:snap="false" />
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:src="@drawable/text"
+            android:textColor="@color/cyan" />
     </RelativeLayout>
 
 
-    <!--<ImageView
-            android:layout_width="match_parent"
-            android:layout_height="140dp"
-            android:src="@drawable/slider_img"/>-->
+    <ss.com.bannerslider.views.BannerSlider
+        android:id="@+id/banner_slider"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@color/colorPrimary"
+        app:interval="3000" />
 
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android:paddingLeft="@dimen/dim_10"
         android:paddingRight="@dimen/dim_10"
@@ -93,7 +69,7 @@
                 android:layout_height="match_parent"
                 android:hint="Select Your Categories"
                 android:paddingLeft="5dp"/>-->
-           </Spinner>
+            </Spinner>
 
             <ImageView
                 android:id="@+id/id_divider"
@@ -136,8 +112,8 @@
                     android:id="@+id/search_btn"
                     android:layout_width="@dimen/dim_30"
                     android:layout_height="@dimen/dim_30"
-                    android:padding="@dimen/dim_3"
                     android:layout_gravity="center"
+                    android:padding="@dimen/dim_3"
                     android:src="@drawable/locator" />
             </LinearLayout>
 
@@ -155,582 +131,20 @@
                 android:layout_height="match_parent"
                 android:layout_toRightOf="@+id/id_divider1"
                 android:background="@android:color/transparent"
-                android:hint="Select Location"
-                android:textColorHint="#800000"
-                android:typeface="sans"
-                android:textSize="@dimen/dim_16"
                 android:cursorVisible="false"
-                android:paddingLeft="@dimen/dim_6" />
+                android:hint="Select Location"
+                android:paddingLeft="10dp"
+                android:textColorHint="#800000"
+                android:textSize="@dimen/dim_16"
+                android:typeface="sans" />
         </RelativeLayout>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/dim_10"/>
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp" />
 
-
-        <!--<ScrollView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dim_20">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">-->
-
-                <!--<LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="@dimen/dim_20">
-
-                    <android.support.v7.widget.CardView
-                        android:id="@+id/id_card1"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_marginRight="@dimen/dim_5"
-                        android:layout_gravity="center"
-                        android:layout_height="wrap_content"
-                        android:elevation="@dimen/dim_10"
-                        app:cardElevation="@dimen/dim_10">
-
-                        <LinearLayout
-                            android:id="@+id/llayout_restaurant1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentLeft="true"
-                            android:background="#FFFFFF"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/dim_130"
-                                android:src="@drawable/img1"
-                                android:scaleType="fitXY"/>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:fontFamily="sans-serif-condensed"
-                                    android:text="Restaurant Name"
-                                    android:textColor="#000000" />
-
-                                <RelativeLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content">
-
-                                    <TextView
-                                        android:id="@+id/price"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:fontFamily="sans-serif-condensed"
-                                        android:text="Price :"
-                                        android:textColor="#000000" />
-
-                                    <TextView
-                                        android:id="@+id/id_price"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="10dp"
-                                        android:layout_toRightOf="@+id/price"
-                                        android:fontFamily="sans-serif-condensed"
-                                        android:text="$10"
-                                        android:textColor="#FF0000" />
-                                </RelativeLayout>
-
-                                <RelativeLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content">
-
-                                    <TextView
-                                        android:id="@+id/location"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:fontFamily="sans-serif-condensed"
-                                        android:text="Location :"
-                                        android:textColor="#000000" />
-
-                                    <TextView
-                                        android:id="@+id/id_location"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="10dp"
-                                        android:layout_toRightOf="@+id/location"
-                                        android:fontFamily="sans-serif-condensed"
-                                        android:text="New Delhi"
-                                        android:textColor="#FF0000" />
-                                </RelativeLayout>
-                            </LinearLayout>
-                        </LinearLayout>
-                    </android.support.v7.widget.CardView>
-
-
-                    <android.support.v7.widget.CardView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/dim_5"
-                        android:layout_weight="1"
-                        android:elevation="@dimen/dim_10"
-                        app:cardElevation="@dimen/dim_10">
-
-                        <LinearLayout
-                            android:id="@+id/llayout_restaurant2"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="#FFFFFF"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/dim_130"
-                                android:src="@drawable/img1"
-                                android:scaleType="fitXY"/>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:fontFamily="sans-serif-condensed"
-                                    android:text="Restaurant Name"
-                                    android:textColor="#000000" />
-
-                                <RelativeLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content">
-
-                                    <TextView
-                                        android:id="@+id/price1"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:fontFamily="sans-serif-condensed"
-                                        android:text="Price :"
-                                        android:textColor="#000000" />
-
-                                    <TextView
-                                        android:id="@+id/id_price1"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="@dimen/dim_15"
-                                        android:layout_toRightOf="@+id/price1"
-                                        android:fontFamily="sans-serif-condensed"
-                                        android:text="$10"
-                                        android:textColor="#FF0000" />
-                                </RelativeLayout>
-
-                                <RelativeLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content">
-
-                                    <TextView
-                                        android:id="@+id/location1"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:fontFamily="sans-serif-condensed"
-                                        android:text="Location :"
-                                        android:textColor="#000000" />
-
-                                    <TextView
-                                        android:id="@+id/id_location1"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="@dimen/dim_15"
-                                        android:layout_toRightOf="@+id/location1"
-                                        android:fontFamily="sans-serif-condensed"
-                                        android:text="New Delhi"
-                                        android:textColor="#FF0000" />
-                                </RelativeLayout>
-                            </LinearLayout>
-                        </LinearLayout>
-                    </android.support.v7.widget.CardView>
-                </LinearLayout>-->
-
-
-                <!--<LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dim_10"
-                    android:orientation="horizontal">
-
-                    <android.support.v7.widget.CardView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="@dimen/dim_5"
-                        android:layout_weight="1"
-                        android:elevation="@dimen/dim_10"
-                        app:cardElevation="@dimen/dim_10">
-
-                        <LinearLayout
-                            android:id="@+id/llayout_restaurant3"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentLeft="true"
-                            android:background="#FFFFFF"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/dim_130"
-                                android:src="@drawable/img1"
-                                android:scaleType="fitXY"/>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:fontFamily="sans-serif-condensed"
-                                    android:text="Restaurant Name"
-                                    android:textColor="#000000" />
-
-                                <RelativeLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content">
-
-                                    <TextView
-                                        android:id="@+id/price3"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:fontFamily="sans-serif-condensed"
-                                        android:text="Price :"
-                                        android:textColor="#000000" />
-
-                                    <TextView
-                                        android:id="@+id/id_price3"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="@dimen/dim_15"
-                                        android:layout_toRightOf="@+id/price3"
-                                        android:fontFamily="sans-serif-condensed"
-                                        android:text="$10"
-                                        android:textColor="#FF0000" />
-                                </RelativeLayout>
-
-                                <RelativeLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content">
-
-                                    <TextView
-                                        android:id="@+id/location3"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:fontFamily="sans-serif-condensed"
-                                        android:text="Location :"
-                                        android:textColor="#000000" />
-
-                                    <TextView
-                                        android:id="@+id/id_location3"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="@dimen/dim_15"
-                                        android:layout_toRightOf="@+id/location3"
-                                        android:fontFamily="sans-serif-condensed"
-                                        android:text="New Delhi"
-                                        android:textColor="#FF0000" />
-                                </RelativeLayout>
-                            </LinearLayout>
-                        </LinearLayout>
-                    </android.support.v7.widget.CardView>
-
-
-                    <android.support.v7.widget.CardView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginLeft="@dimen/dim_5"
-                        android:layout_alignParentRight="true"
-                        android:elevation="@dimen/dim_10"
-                        app:cardElevation="@dimen/dim_10">
-
-                        <LinearLayout
-                            android:id="@+id/llayout_restaurant4"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="#FFFFFF"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/dim_130"
-                                android:scaleType="fitXY"
-                                android:src="@drawable/img1" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:fontFamily="sans-serif-condensed"
-                                    android:text="Restaurant Name"
-                                    android:textColor="#000000" />
-
-                                <RelativeLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content">
-
-                                    <TextView
-                                        android:id="@+id/price4"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:fontFamily="sans-serif-condensed"
-                                        android:text="Price :"
-                                        android:textColor="#000000" />
-
-                                    <TextView
-                                        android:id="@+id/id_price4"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="@dimen/dim_15"
-                                        android:layout_toRightOf="@+id/price4"
-                                        android:fontFamily="sans-serif-condensed"
-                                        android:text="$10"
-                                        android:textColor="#FF0000" />
-                                </RelativeLayout>
-
-                                <RelativeLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content">
-
-                                    <TextView
-                                        android:id="@+id/location4"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:fontFamily="sans-serif-condensed"
-                                        android:text="Location :"
-                                        android:textColor="#000000" />
-
-                                    <TextView
-                                        android:id="@+id/id_location4"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="@dimen/dim_15"
-                                        android:layout_toRightOf="@+id/location4"
-                                        android:fontFamily="sans-serif-condensed"
-                                        android:text="New Delhi"
-                                        android:textColor="#FF0000" />
-                                </RelativeLayout>
-                            </LinearLayout>
-                        </LinearLayout>
-                    </android.support.v7.widget.CardView>
-                </LinearLayout>      END-->
-
-
-                <!--<LinearLayout
-                    android:id="@+id/llayout_restaurant2"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:orientation="vertical"
-                    android:background="#A1CCEF"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true">
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:src="@drawable/img1"/>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Restaurant Name"
-                    android:fontFamily="sans-serif-condensed"
-                    android:textColor="#000000"/>
-                    <RelativeLayout>
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-                        <TextView
-                        android:id="@+id/price1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Price :"
-                        android:fontFamily="sans-serif-condensed"
-                        android:textColor="#000000"/>
-                    <TextView
-                        android:id="@+id/id_price1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:text="$10"
-                        android:layout_toRightOf="@+id/price1"
-                        android:fontFamily="sans-serif-condensed"
-                        android:textColor="#FF0000"/>
-                </RelativeLayout>
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:id="@+id/location1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Location :"
-                        android:fontFamily="sans-serif-condensed"
-                        android:textColor="#000000"/>
-                    <TextView
-                        android:id="@+id/id_location1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:text="New Delhi"
-                        android:layout_toRightOf="@+id/location1"
-                        android:fontFamily="sans-serif-condensed"
-                        android:textColor="#FF0000"/>
-                </RelativeLayout>
-            </LinearLayout>
-        </LinearLayout>
-    </RelativeLayout>
-
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
-        <LinearLayout
-            android:id="@+id/llayout_restaurant4"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:orientation="vertical"
-            android:layout_alignParentLeft="true"
-            android:background="#A1CCEF">
-            <ImageView
-                android:layout_width="150dp"
-                android:layout_height="100dp"
-                android:src="@drawable/img1"/>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Restaurant Name"
-                    android:fontFamily="sans-serif-condensed"
-                    android:textColor="#000000"/>
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:id="@+id/price3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Price :"
-                        android:fontFamily="sans-serif-condensed"
-                        android:textColor="#000000"/>
-                    <TextView
-                        android:id="@+id/id_price3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:text="$10"
-                        android:layout_toRightOf="@+id/price3"
-                        android:fontFamily="sans-serif-condensed"
-                        android:textColor="#FF0000"/>
-                </RelativeLayout>
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:id="@+id/location3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Location :"
-                        android:fontFamily="sans-serif-condensed"
-                        android:textColor="#000000"/>
-                    <TextView
-                        android:id="@+id/id_location3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:text="New Delhi"
-                        android:layout_toRightOf="@+id/location3"
-                        android:fontFamily="sans-serif-condensed"
-                        android:textColor="#FF0000"/>
-                </RelativeLayout>
-            </LinearLayout>
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/llayout_restaurant3"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:orientation="vertical"
-            android:background="#A1CCEF"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true">
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:src="@drawable/img1"/>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Restaurant Name"
-                    android:fontFamily="sans-serif-condensed"
-                    android:textColor="#000000"/>
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:id="@+id/price2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Price :"
-                        android:fontFamily="sans-serif-condensed"
-                        android:textColor="#000000"/>
-                    <TextView
-                        android:id="@+id/id_price2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:text="$10"
-                        android:layout_toRightOf="@+id/price2"
-                        android:fontFamily="sans-serif-condensed"
-                        android:textColor="#FF0000"/>
-                </RelativeLayout>
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:id="@+id/location2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Location :"
-                        android:fontFamily="sans-serif-condensed"
-                        android:textColor="#000000"/>
-                    <TextView
-                        android:id="@+id/id_location2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:text="New Delhi"
-                        android:layout_toRightOf="@+id/location2"
-                        android:fontFamily="sans-serif-condensed"
-                        android:textColor="#FF0000"/>
-                </RelativeLayout>
-            </LinearLayout>-->
-
-
-           </LinearLayout>
-        <!--</ScrollView>
-    </LinearLayout>-->
+    </LinearLayout>
 </LinearLayout>

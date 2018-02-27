@@ -1,4 +1,4 @@
-package com.mbiz;
+package com.mbiz.model;
 
 /**
  * Created by Aquad on 26-12-2017.

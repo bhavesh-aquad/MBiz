@@ -1,86 +1,53 @@
 package com.mbiz;
 
-import android.app.ActionBar;
+import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
-import android.graphics.PorterDuff;
 import android.graphics.Rect;
-import android.os.Handler;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
-import android.util.TypedValue;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
-import com.facebook.AccessToken;
-import com.facebook.login.LoginManager;
-import com.viewpagerindicator.CirclePageIndicator;
+import com.mbiz.adapter.RestaurantAdapter;
+import com.mbiz.application.AppConstants;
+import com.mbiz.application.MyApp;
+import com.mbiz.model.Restaurant;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.V;
-import static com.mbiz.R.drawable.logo1;
-import static com.mbiz.R.styleable.MenuItem;
+import ss.com.bannerslider.banners.Banner;
+import ss.com.bannerslider.banners.DrawableBanner;
+import ss.com.bannerslider.views.BannerSlider;
 
-public class HomeActivity extends AppCompatActivity{
+public class HomeActivity extends AppCompatActivity {
 
-    Spinner spinner;
-    SpinnerAdapter adapter;
-    private static ViewPager mPager;
-    private static int currentPage = 0;
-    private static int NUM_PAGES = 0;
+    private Spinner spinner;
     private static final Integer[] IMAGES = {R.drawable.img1, R.drawable.img2, R.drawable.img3};
-    private ArrayList<Integer> ImagesArray = new ArrayList<Integer>();
     private ImageView bt_magic_biz;
     private ImageView search_btn;
-
-    //a list to store all the products
-    List<Restaurant> restaurantList;
-
-    //the recyclerview
-    RecyclerView recyclerView;
-
-    TextView logout;
+    private List<Restaurant> restaurantList;
+    private RecyclerView recyclerView;
+    private TextView logout;
+    private BannerSlider bannerSlider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // get action bar
-        //ActionBar actionBar = getActionBar();
-        // Enabling Up / Back navigation
-        //actionBar.setDisplayHomeAsUpEnabled(true);
-
         setContentView(R.layout.activity_home);
 
-        bt_magic_biz = (ImageView) findViewById(R.id.bt_magic_biz);
-        search_btn = (ImageView) findViewById(R.id.search_btn);
-        logout = (TextView) findViewById(R.id.logout);
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        //getSupportActionBar().setDisplayShowHomeEnabled(true);
-        //getSupportActionBar().setTitle(null);
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        //getSupportActionBar().setHomeAsUpIndicator(R.drawable.back_arrow);
-
+        bt_magic_biz = findViewById(R.id.bt_magic_biz);
+        search_btn = findViewById(R.id.search_btn);
+        logout = findViewById(R.id.logout);
         init();
 
-        spinner = (Spinner)findViewById(R.id.spinner);
+        spinner = findViewById(R.id.spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter
                 .createFromResource(this, R.array.categories_array, android.R.layout.simple_spinner_item);
 
@@ -90,18 +57,18 @@ public class HomeActivity extends AppCompatActivity{
         spinner.getPopupBackground();
         spinner.getBaseline();
 
-        logout.setOnClickListener(new View.OnClickListener(){
+        logout.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
-
+            public void onClick(View view) {
+                MyApp.setStatus(AppConstants.IS_LOGIN, false);
                 Intent itent = new Intent(HomeActivity.this, LoginActivity.class);
                 startActivity(itent);
             }
         });
 
-        bt_magic_biz.setOnClickListener(new View.OnClickListener(){
+        bt_magic_biz.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
+            public void onClick(View view) {
                 Intent intent = new Intent(HomeActivity.this, DealsActivity.class);
                 startActivity(intent);
             }
@@ -115,8 +82,7 @@ public class HomeActivity extends AppCompatActivity{
             }
         });
 
-        //getting the recyclerview from xml
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
 
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
@@ -124,11 +90,7 @@ public class HomeActivity extends AppCompatActivity{
         recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, 20, true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        //recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        //initializing the productlist
         restaurantList = new ArrayList<>();
-
 
         //adding some items to our list
         restaurantList.add(
@@ -244,84 +206,27 @@ public class HomeActivity extends AppCompatActivity{
             }
         }
 
-
-        /**
-         * Converting dp to pixel
-         */
-        /** private int dpToPx(int dp) {
-         Resources r = getResources();
-         return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
-         }**/
     }
 
     private void init() {
-        for(int i=0;i<IMAGES.length;i++)
-            ImagesArray.add(IMAGES[i]);
-
-        mPager = (ViewPager) findViewById(R.id.pager);
-
-
-        mPager.setAdapter(new SlidingImage_Adapter(HomeActivity.this,ImagesArray));
-
-
-        CirclePageIndicator indicator = (CirclePageIndicator)
-                findViewById(R.id.indicator);
-
-        indicator.setViewPager(mPager);
-
-        final float density = getResources().getDisplayMetrics().density;
-
-//Set circle indicator radius
-        indicator.setRadius(5 * density);
-
-        NUM_PAGES =IMAGES.length;
-
-        // Auto start of viewpager
-        final Handler handler = new Handler();
-        final Runnable Update = new Runnable() {
-            public void run() {
-                if (currentPage == NUM_PAGES) {
-                    currentPage = 0;
-                }
-                mPager.setCurrentItem(currentPage++, true);
-            }
-        };
-        Timer swipeTimer = new Timer();
-        swipeTimer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                handler.post(Update);
-            }
-        }, 3000, 3000);
-
-        // Pager listener over indicator
-        indicator.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-
-            @Override
-            public void onPageSelected(int position) {
-                currentPage = position;
-
-            }
-
-            @Override
-            public void onPageScrolled(int pos, float arg1, int arg2) {
-
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int pos) {
-
-            }
-        });
+        bannerSlider = findViewById(R.id.banner_slider);
+        List<Banner> banners = new ArrayList<>();
+        for (int i = 0; i < IMAGES.length; i++)
+            banners.add(new DrawableBanner(IMAGES[i]));
+        bannerSlider.setBanners(banners);
 
     }
 
     @Override
     public boolean onOptionsItemSelected(android.view.MenuItem item) {
-        if (item.getItemId()==android.R.id.home)
-            finish();
-
+        if (item.getItemId() == android.R.id.home)
+            startActivity(new Intent(getContext(), LoginActivity.class));
+        finishAffinity();
         return super.onOptionsItemSelected(item);
+    }
+
+    private Context getContext() {
+        return HomeActivity.this;
     }
 }
 
