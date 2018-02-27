@@ -358,6 +358,10 @@ public class LoginActivity extends CustomActivity implements GoogleApiClient.OnC
             if (o.optInt("status") == 200) {
 
                 User user = new Gson().fromJson(o.toString(), User.class);
+                if (user.getStatus_id().equals("t2") || user.getStatus_id().equals("t3")) {
+                    MyApp.popMessage("Error", o.optString("message"), getContext());
+                    return;
+                }
                 MyApp.getApplication().writeUser(user);
 
                 MyApp.showMassage(getContext(), "Logged-in successfully");
@@ -374,7 +378,7 @@ public class LoginActivity extends CustomActivity implements GoogleApiClient.OnC
 
                 MyApp.showMassage(getContext(), o.optString("message"));
                 User user = new Gson().fromJson(o.toString(), User.class);
-                if (user.getStatus_id().endsWith("t2") || user.getStatus_id().endsWith("t3")) {
+                if (user.getStatus_id().equals("t2") || user.getStatus_id().equals("t3")) {
                     MyApp.popMessage("Error", o.optString("message"), getContext());
                     return;
                 }

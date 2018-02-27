@@ -84,6 +84,10 @@ public class SignupActivity extends CustomActivity implements CustomActivity.Res
     public void onJsonObjectResponseReceived(JSONObject o, int callNumber) {
         if (callNumber == 1) {
             if (o.optInt("status") == 200) {
+                if (o.optString("status_id").equals("t2") || o.optString("status_id").equals("t3")) {
+                    MyApp.popMessage("Error", o.optString("message"), getContext());
+                    return;
+                }
 //                MyApp.showMassage(getContext(), "Registered successfully");
 //                MyApp.setStatus(AppConstants.IS_LOGIN, true);
 //                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);

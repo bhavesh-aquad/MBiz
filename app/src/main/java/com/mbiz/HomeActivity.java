@@ -63,6 +63,7 @@ public class HomeActivity extends AppCompatActivity {
                 MyApp.setStatus(AppConstants.IS_LOGIN, false);
                 Intent itent = new Intent(HomeActivity.this, LoginActivity.class);
                 startActivity(itent);
+                finish();
             }
         });
 
