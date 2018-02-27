@@ -1,14 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
-    signingConfigs {
-        config {
-            keyAlias 'MBiz'
-            keyPassword '111111'
-            storeFile file('D:/Android/Projects/MBiz/MBiz_key.jks')
-            storePassword '111111'
-        }
-    }
+//    signingConfigs {
+//        config {
+//            keyAlias 'MBiz'
+//            keyPassword '111111'
+//            storeFile file('D:/Android/Projects/MBiz/MBiz_key.jks')
+//            storePassword '111111'
+//        }
+//    }
     compileSdkVersion 27
     buildToolsVersion '27.0.2'
     defaultConfig {
@@ -25,7 +25,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         debug {
-            signingConfig signingConfigs.config
+//            signingConfig signingConfigs.config
         }
     }
 }
