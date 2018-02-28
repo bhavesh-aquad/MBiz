@@ -35,111 +35,6 @@
                 android:paddingTop="@dimen/dim_25"
                 android:src="@drawable/logo1" />
 
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/first_name_id"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColorHint="@color/white"
-                android:theme="@style/MyTextInputLayout">
-
-                <EditText
-                    android:id="@+id/et_first_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/white"
-                    android:inputType="text"
-                    android:hint="First Name"
-                    android:textColor="@color/white"
-                    android:textCursorDrawable="@drawable/custom_cursor_drawable"
-                    android:textSize="16sp"
-                    android:typeface="sans" />
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/last_name_id"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dim_5"
-                android:hint="Last Name"
-                android:textColorHint="@color/white"
-                android:theme="@style/MyTextInputLayout">
-
-                <EditText
-                    android:id="@+id/et_last_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/white"
-                    android:textColor="@color/white"
-                    android:inputType="text"
-                    android:textCursorDrawable="@drawable/custom_cursor_drawable"
-                    android:textSize="16sp"
-                    android:typeface="sans" />
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/input_phone_id"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dim_5"
-                android:textColorHint="#FFFFFF"
-                android:theme="@style/MyTextInputLayout">
-
-                <EditText
-                    android:id="@+id/et_phone"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/white"
-                    android:hint="Phone Number"
-                    android:inputType="phone"
-                    android:textColor="@color/white"
-                    android:textCursorDrawable="@drawable/custom_cursor_drawable"
-                    android:textSize="16sp"
-                    android:typeface="sans" />
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/input_address_id"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dim_5"
-                android:textColorHint="#FFFFFF"
-                android:theme="@style/MyTextInputLayout">
-
-                <EditText
-                    android:id="@+id/et_address"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/white"
-                    android:hint="Address"
-                    android:inputType="text"
-                    android:textColor="@color/white"
-                    android:textCursorDrawable="@drawable/custom_cursor_drawable"
-                    android:textSize="16sp"
-                    android:typeface="sans" />
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/input_zip_id"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dim_5"
-                android:textColorHint="@color/white"
-                android:theme="@style/MyTextInputLayout">
-
-                <EditText
-                    android:id="@+id/et_zip"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/white"
-                    android:hint="Zip Code"
-                    android:inputType="number"
-                    android:textColor="@color/white"
-                    android:textCursorDrawable="@drawable/custom_cursor_drawable"
-                    android:textSize="16sp"
-                    android:typeface="sans" />
-            </android.support.design.widget.TextInputLayout>
-
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/input_email_id"
                 android:layout_width="match_parent"
@@ -176,6 +71,110 @@
                     android:backgroundTint="@color/white"
                     android:hint="Password"
                     android:inputType="textPassword"
+                    android:textColor="@color/white"
+                    android:textCursorDrawable="@drawable/custom_cursor_drawable"
+                    android:textSize="16sp"
+                    android:typeface="sans" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/first_name_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/white"
+                android:theme="@style/MyTextInputLayout">
+
+                <EditText
+                    android:id="@+id/et_first_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/white"
+                    android:inputType="text"
+                    android:hint="First Name (Optional)"
+                    android:textColor="@color/white"
+                    android:textCursorDrawable="@drawable/custom_cursor_drawable"
+                    android:textSize="16sp"
+                    android:typeface="sans" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/last_name_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dim_5"
+                android:hint="Last Name (Optional)"
+                android:textColorHint="@color/white"
+                android:theme="@style/MyTextInputLayout">
+
+                <EditText
+                    android:id="@+id/et_last_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/white"
+                    android:textColor="@color/white"
+                    android:inputType="text"
+                    android:textCursorDrawable="@drawable/custom_cursor_drawable"
+                    android:textSize="16sp"
+                    android:typeface="sans" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_phone_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dim_5"
+                android:textColorHint="#FFFFFF"
+                android:theme="@style/MyTextInputLayout">
+
+                <EditText
+                    android:id="@+id/et_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/white"
+                    android:hint="Phone Number (Optional)"
+                    android:inputType="phone"
+                    android:textColor="@color/white"
+                    android:textCursorDrawable="@drawable/custom_cursor_drawable"
+                    android:textSize="16sp"
+                    android:typeface="sans" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_address_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dim_5"
+                android:textColorHint="#FFFFFF"
+                android:theme="@style/MyTextInputLayout">
+
+                <EditText
+                    android:id="@+id/et_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/white"
+                    android:hint="Address (Optional)"
+                    android:inputType="text"
+                    android:textColor="@color/white"
+                    android:textCursorDrawable="@drawable/custom_cursor_drawable"
+                    android:textSize="16sp"
+                    android:typeface="sans" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_zip_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dim_5"
+                android:textColorHint="@color/white"
+                android:theme="@style/MyTextInputLayout">
+
+                <EditText
+                    android:id="@+id/et_postcode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/white"
+                    android:hint="Postcode (Optional)"
+                    android:inputType="number"
                     android:textColor="@color/white"
                     android:textCursorDrawable="@drawable/custom_cursor_drawable"
                     android:textSize="16sp"

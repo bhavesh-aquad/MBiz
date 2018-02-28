@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/MBiz.iml" filepath="$PROJECT_DIR$/MBiz.iml" />
+      <module fileurl="file://C:\Bhavesh\MBiz\MBiz.iml" filepath="C:\Bhavesh\MBiz\MBiz.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

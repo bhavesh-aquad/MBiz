@@ -17,7 +17,7 @@ import org.json.JSONObject;
 
 public class SignupActivity extends CustomActivity implements CustomActivity.ResponseCallback {
     Button sign_up_btn;
-    EditText et_first_name, et_last_name, et_phone, et_address, et_signup_email, et_signup_password, et_zip;
+    EditText et_first_name, et_last_name, et_phone, et_address, et_signup_email, et_signup_password, et_postcode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +31,7 @@ public class SignupActivity extends CustomActivity implements CustomActivity.Res
         et_last_name = findViewById(R.id.et_last_name);
         et_phone = findViewById(R.id.et_phone);
         et_address = findViewById(R.id.et_address);
-        et_zip = findViewById(R.id.et_zip);
+        et_postcode = findViewById(R.id.et_postcode);
         et_signup_email = findViewById(R.id.et_signup_email);
         et_signup_password = findViewById(R.id.et_signup_password);
 
@@ -60,7 +60,7 @@ public class SignupActivity extends CustomActivity implements CustomActivity.Res
                     p.put("email", et_signup_email.getText().toString());
                     p.put("password", et_signup_password.getText().toString());
                     p.put("address", et_address.getText().toString());
-                    p.put("postcode", et_zip.getText().toString());
+                    p.put("postcode", et_postcode.getText().toString());
                     p.put("mobile", et_phone.getText().toString());
 
                     postCall(getContext(), AppConstants.BASE_URL + "signup", p, "Registering you...", 1);

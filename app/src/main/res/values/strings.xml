@@ -14,6 +14,11 @@
         <item>Restaurant</item>
         <item>Activities</item>
         <item>Health and Beauty</item>
-        <item>Take Away</item>
+        <item>Takeaways</item>
+        <item>Trades and Services</item>
+        <item>Retail</item>
+        <item>Pubs and Clubs</item>
+        <item>Hotels</item>
+        <item>Others</item>
     </string-array>
 </resources>
