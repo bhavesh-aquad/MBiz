@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#25251d"
+    tools:context="com.mbiz.FilterActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:popupTheme="@style/AppTheme.PopupOverlay" >
+    </android.support.v7.widget.Toolbar>
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dim_10"
+        android:layout_marginRight="@dimen/dim_10"
+        app:cardBackgroundColor="#939373"
+        android:layout_marginTop="@dimen/dim_20"
+        android:foregroundGravity="center">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="@dimen/dim_30">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="I'm Looking For"
+            android:textColor="@color/white"
+            android:typeface="serif"
+            android:textSize="@dimen/dim_16"/>
+
+            <TextView
+                android:id="@+id/deals"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimary"
+                android:text="Deal's:"
+                android:typeface="serif"
+                android:layout_marginTop="@dimen/dim_10"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dim_32"
+                android:background="@drawable/rect_shape"
+                android:layout_marginTop="@dimen/dim_5">
+                <Spinner
+                    android:id="@+id/deals_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="@dimen/dim_3"
+                    android:popupBackground="@drawable/style">
+                </Spinner>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dim_32"
+                android:background="@drawable/rect_shape"
+                android:layout_marginTop="@dimen/dim_10">
+                <Spinner
+                    android:id="@+id/deals_sub_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="@dimen/dim_3"
+                    android:popupBackground="@drawable/style">
+                </Spinner>
+            </RelativeLayout>
+
+
+            <TextView
+                android:id="@+id/within"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="With In:"
+                android:textColor="@color/colorPrimary"
+                android:typeface="serif"
+                android:layout_marginTop="@dimen/dim_10"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dim_32"
+                android:background="@drawable/rect_shape"
+                android:layout_marginTop="@dimen/dim_5">
+
+                <Spinner
+                    android:id="@+id/within_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="@dimen/dim_3"
+                    android:popupBackground="@drawable/style">
+                </Spinner>
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/of"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimary"
+                android:text="Of:"
+                android:typeface="serif"
+                android:layout_marginTop="@dimen/dim_10"/>
+
+                <AutoCompleteTextView
+                    android:id="@+id/places"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dim_32"
+                    android:paddingLeft="@dimen/dim_8"
+                    android:textSize="@dimen/dim_16"
+                    android:background="@drawable/rect_shape"
+                    android:cursorVisible="false"
+                    android:hint="Postcode/Location"
+                    android:textColorHint="#000000"
+                    android:layout_marginTop="@dimen/dim_5"/>
+
+            <TextView
+                android:id="@+id/deals3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="For:"
+                android:textColor="@color/colorPrimary"
+                android:typeface="serif"
+                android:layout_marginTop="@dimen/dim_10"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dim_32"
+                android:background="@drawable/rect_shape"
+                android:layout_marginTop="@dimen/dim_5">
+
+                <Spinner
+                    android:id="@+id/for_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="@dimen/dim_3"
+                    android:popupBackground="@drawable/style">
+                </Spinner>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dim_20">
+            <Button
+                android:id="@+id/bt_find_deal"
+                android:layout_width="@dimen/dim_160"
+                android:layout_height="@dimen/dim_40"
+                android:layout_marginTop="@dimen/dim_15"
+                android:background="@drawable/elliptical_shape"
+                android:text="FIND ME A DEAL"
+                android:textColor="@color/white"
+                android:typeface="serif"
+                android:layout_alignParentLeft="true"
+                android:drawableRight="@drawable/arrow_next"
+                android:padding="@dimen/dim_5"/>
+ <!--           <Button
+                android:id="@+id/bt_reset"
+                android:layout_width="@dimen/dim_100"
+                android:layout_height="@dimen/dim_40"
+                android:layout_marginTop="@dimen/dim_15"
+                android:background="@drawable/elliptical_red_shape"
+                android:text="Reset"
+                android:textColor="@color/white"
+                android:typeface="serif"
+                android:layout_alignParentRight="true"/>             -->
+            </RelativeLayout>
+</LinearLayout>
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

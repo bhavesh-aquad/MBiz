@@ -1,11 +1,14 @@
 package com.mbiz;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.TextView;
 
 import com.loopj.android.http.RequestParams;
@@ -23,6 +26,7 @@ import java.util.List;
 public class DealsActivity extends CustomActivity implements CustomActivity.ResponseCallback {
     private List<Deals> dealsList;
     private RecyclerView recyclerView;
+    View.OnClickListener listener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +40,7 @@ public class DealsActivity extends CustomActivity implements CustomActivity.Resp
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
         TextView mTitle = toolbar.findViewById(R.id.side_toolbar_title);
-        mTitle.setText("Hot Deals");
+        mTitle.setText("Deals");
         actionBar.setTitle("");
 
         recyclerView = findViewById(R.id.recyclerView);
@@ -84,7 +88,19 @@ public class DealsActivity extends CustomActivity implements CustomActivity.Resp
             }
 
             //creating recyclerview adapter
-            DealsAdapter adapter = new DealsAdapter(dealsList, getApplicationContext());
+            DealsAdapter adapter = new DealsAdapter(dealsList, getApplicationContext(),  new DealsAdapter.ClickListener() {
+                @Override public void onPositionClicked(int position) {
+                // callback performed on click
+                    if(position==0){
+                        Intent i = new Intent(DealsActivity.this, DetailsActivity.class);
+                        startActivity(i);
+                    }
+            }
+
+            @Override public void onLongClicked(int position) {
+                // callback performed on click
+            }
+        });
             //setting adapter to recyclerview
             recyclerView.setAdapter(adapter);
         }

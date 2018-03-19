@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#464675"
+    android:background="#25251d"
     android:orientation="vertical"
     tools:context="com.mbiz.LoginActivity">
 
@@ -112,7 +112,7 @@
             android:layout_marginTop="@dimen/dim_10"
             android:gravity="center_horizontal"
             android:textColor="@color/white"
-            android:textSize="@dimen/dim_14"
+            android:textSize="@dimen/dim_16"
             android:typeface="sans" />
 
         <com.shaishavgandhi.loginbuttons.FacebookButton
@@ -121,7 +121,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:text="Sign in with Facebook"
-            app:iconSize="30dp" />
+            app:iconSize="30.dp" />
 
         <com.shaishavgandhi.loginbuttons.GooglePlusButton
             android:id="@+id/btn_google"

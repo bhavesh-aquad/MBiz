@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MBiz</string>
+    <string name="app_name">MagicBiz</string>
     <string name="edittext_hint">USER NAME<font size="15"></font></string>
     <string name="logout"><u>LOG OUT</u></string>
     <string name="forgot_password"><u>FORGOT PASSWORD</u></string>
@@ -10,7 +10,7 @@
     <string name="connect_working_internet">Please connect to a working internet connection</string>
 
     <string-array name="categories_array">
-        <item>Select Categories...</item>
+        <item>All Deals...</item>
         <item>Restaurant</item>
         <item>Activities</item>
         <item>Health and Beauty</item>
@@ -21,4 +21,46 @@
         <item>Hotels</item>
         <item>Others</item>
     </string-array>
+    <string-array name="subcategories_array">
+        <item>All Deals...</item>
+        <item>Restaurant</item>
+        <item>Activities</item>
+        <item>Health and Beauty</item>
+        <item>Takeaways</item>
+        <item>Trades and Services</item>
+        <item>Retail</item>
+        <item>Pubs and Clubs</item>
+        <item>Hotels</item>
+        <item>Others</item>
+    </string-array>
+
+    <string-array name="within_array">
+        <item>1/2 Mile</item>
+        <item>1 Mile</item>
+        <item>2 Mile</item>
+        <item>3 Mile</item>
+        <item>4 Mile</item>
+        <item>5 Mile</item>
+        <item>10 Mile</item>
+        <item>15 Mile</item>
+        <item>20 Mile</item>
+        <item>25 Mile</item>
+    </string-array>
+    <string-array name="for_array">
+        <item>Sunday</item>
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thurseday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+    </string-array>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

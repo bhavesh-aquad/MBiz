@@ -1,20 +1,24 @@
 package com.mbiz.model;
 
 /**
- * Created by Aquad on 26-12-2017.
+ * Created by Aquad on 12/03/2018.
  */
 
 public class Restaurant {
     private int id;
     private String name;
-    private String price;
+    private String offer;
+//    private String price;
     private int image;
+    private int mapicon;
 
-    public Restaurant(int id, String name, String price, int image) {
+    public Restaurant(int id, String name, String offer, int image, int mapicon) {
         this.id = id;
         this.name = name;
-        this.price = price;
+        this.offer = offer;
+      //  this.price = price;
         this.image = image;
+        this.mapicon = mapicon;
     }
 
     public int getId() {
@@ -25,11 +29,20 @@ public class Restaurant {
         return name;
     }
 
-    public String getPrice() {
-        return price;
+    public String getOffer(){
+        return offer;
     }
+
+    //  public String getPrice() {
+   //     return price;
+   // }
 
     public int getImage() {
         return image;
     }
+
+    public int getMapicon() {
+        return mapicon;
+    }
 }
+

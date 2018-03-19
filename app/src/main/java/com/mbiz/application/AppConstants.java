@@ -10,4 +10,6 @@ public class AppConstants {
     public static final String FB_ID = "fbid";
     public static final String IS_LOGIN = "islogin";
     private static final String imageUrl = "http://www.stubuz.com/mbiz/assets";
+    public static final String HOME_URL = "http://stubuz.com/mbiz/api/getcategory";
+
 }

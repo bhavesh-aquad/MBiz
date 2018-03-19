@@ -1,12 +1,15 @@
 package com.mbiz;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+import android.support.v7.widget.Toolbar;
 
 import com.loopj.android.http.RequestParams;
 import com.mbiz.application.AppConstants;
@@ -17,23 +20,35 @@ import org.json.JSONObject;
 
 public class SignupActivity extends CustomActivity implements CustomActivity.ResponseCallback {
     Button sign_up_btn;
-    EditText et_first_name, et_last_name, et_phone, et_address, et_signup_email, et_signup_password, et_postcode;
+    EditText et_first_name, et_last_name, et_phone, et_address, et_signup_email, et_signup_password, et_signup_confirmpassword,
+            et_postcode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowCustomEnabled(true);
+        actionBar.setHomeButtonEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        TextView mTitle = toolbar.findViewById(R.id.side_toolbar_title);
+        mTitle.setText("Sign Up");
+        actionBar.setTitle("");
+
         setResponseListener(this);
 
         sign_up_btn = findViewById(R.id.sign_up_btn);
-        et_first_name = findViewById(R.id.et_first_name);
-        et_last_name = findViewById(R.id.et_last_name);
-        et_phone = findViewById(R.id.et_phone);
-        et_address = findViewById(R.id.et_address);
-        et_postcode = findViewById(R.id.et_postcode);
+      //  et_first_name = findViewById(R.id.et_first_name);
+      //  et_last_name = findViewById(R.id.et_last_name);
+      //  et_phone = findViewById(R.id.et_phone);
+      //  et_address = findViewById(R.id.et_address);
+      //  et_postcode = findViewById(R.id.et_postcode);
         et_signup_email = findViewById(R.id.et_signup_email);
         et_signup_password = findViewById(R.id.et_signup_password);
+        et_signup_confirmpassword = findViewById(R.id.et_signup_confirmpassword);
 
         sign_up_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,18 +67,29 @@ public class SignupActivity extends CustomActivity implements CustomActivity.Res
                     et_signup_email.setError("Email is required");
                 else if (et_signup_password.getText().toString().length() == 0)
                     et_signup_password.setError("Password Is Required");
+                else if (et_signup_confirmpassword.getText().toString().length()==0)
+                    et_signup_confirmpassword.setError("Please enter Password again");
                 else {
 
                     RequestParams p = new RequestParams();
-                    p.put("fname", et_first_name.getText().toString());
-                    p.put("lname", et_last_name.getText().toString());
+                  //  p.put("fname", et_first_name.getText().toString());
+                  //  p.put("lname", et_last_name.getText().toString());
                     p.put("email", et_signup_email.getText().toString());
                     p.put("password", et_signup_password.getText().toString());
-                    p.put("address", et_address.getText().toString());
-                    p.put("postcode", et_postcode.getText().toString());
-                    p.put("mobile", et_phone.getText().toString());
+                    p.put("confirmpassword", et_signup_confirmpassword.getText().toString());
+                  //  p.put("address", et_address.getText().toString());
+                  //  p.put("postcode", et_postcode.getText().toString());
+                  //  p.put("mobile", et_phone.getText().toString());
 
-                    postCall(getContext(), AppConstants.BASE_URL + "signup", p, "Registering you...", 1);
+                    String password = et_signup_password.getText().toString();
+                    String confirmpassword = et_signup_confirmpassword.getText().toString();
+
+                    if(password.equals(confirmpassword))
+                        postCall(getContext(), AppConstants.BASE_URL + "signup", p, "Registering you...", 1);
+                    else{
+                        Toast.makeText(getApplicationContext(), "Password and confirm password should be same", Toast.LENGTH_LONG).show();
+                    }
+
                 }
 
             }

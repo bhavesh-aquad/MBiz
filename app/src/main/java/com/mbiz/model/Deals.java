@@ -24,9 +24,7 @@ public class Deals {
         return name;
     }
 
-    public String getTitle() {
-        return title;
-    }
+    public String getTitle() { return title; }
 
     public String getImage1() { return "http://www.stubuz.com/mbiz/assets/"+image1; }
 }

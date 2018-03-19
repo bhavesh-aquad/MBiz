@@ -9,16 +9,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mbiz.R;
+import com.mbiz.model.HomeRestaurant;
+import com.mbiz.model.Restaurant;
 import com.mbiz.model.Restaurant;
 
 import java.util.List;
 
 /**
- * Created by Aquad on 26-12-2017.
+ * Created by Aquad on 12/03/2018.
  */
 
 public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.RestaurantViewHolder> {
-
     //this context we will use to inflate the layout
     private Context mCtx;
 
@@ -32,25 +33,27 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
     }
 
     @Override
-    public RestaurantViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RestaurantAdapter.RestaurantViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         //inflating and returning our view holder
         LayoutInflater inflater = LayoutInflater.from(mCtx);
         View view = inflater.inflate(R.layout.layout_restaurant, null);
-        return new RestaurantViewHolder(view);
+        return new RestaurantAdapter.RestaurantViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(RestaurantViewHolder holder, int position) {
+    public void onBindViewHolder(RestaurantAdapter.RestaurantViewHolder holder, int position) {
         //getting the product of the specified position
         Restaurant restaurant = restaurantList.get(position);
 
         //binding the data with the viewholder views
-        holder.rest_name.setText(restaurant.getName());
-        holder.price.setText(restaurant.getPrice());
+        holder.name.setText(restaurant.getName());
+        holder.offer.setText(restaurant.getOffer());
+       // holder.price.setText(restaurant.getPrice());
         //holder.textViewRating.setText(String.valueOf(product.getRating()));
         //holder.textViewPrice.setText(String.valueOf(product.getPrice()));
 
-        holder.imageView.setImageDrawable(mCtx.getResources().getDrawable(restaurant.getImage()));
+        holder.image.setImageDrawable(mCtx.getResources().getDrawable(restaurant.getImage()));
+        holder.mapicon.setImageDrawable(mCtx.getResources().getDrawable(restaurant.getMapicon()));
 
     }
 
@@ -63,17 +66,19 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
 
     class RestaurantViewHolder extends RecyclerView.ViewHolder {
 
-        TextView rest_name, price;
-        ImageView imageView;
+        TextView name, offer;
+        ImageView image, mapicon;
 
         public RestaurantViewHolder(View itemView) {
             super(itemView);
 
-            rest_name = (TextView) itemView.findViewById(R.id.rest_name);
-            price = (TextView) itemView.findViewById(R.id.price);
+            name = (TextView) itemView.findViewById(R.id.name);
+            offer = itemView.findViewById(R.id.offer);
+           // img_restaurant = (TextView) itemView.findViewById(R.id.price);
             //textViewRating = (TextView) itemView.findViewById(R.id.textViewRating);
             //textViewPrice = (TextView) itemView.findViewById(R.id.textViewPrice);
-            imageView = (ImageView) itemView.findViewById(R.id.imageView);
+            image = (ImageView) itemView.findViewById(R.id.image);
+            mapicon = itemView.findViewById(R.id.mapicon);
         }
     }
 }

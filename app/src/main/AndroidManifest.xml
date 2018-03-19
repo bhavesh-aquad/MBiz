@@ -44,6 +44,7 @@
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name" />
+
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
@@ -60,23 +61,30 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-
-
         <activity
             android:name=".SignupActivity"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".HomeActivity"
             android:windowSoftInputMode="adjustPan" />
-
         <activity
             android:name=".DealsActivity"
             android:label="Hot Deals"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".ForgotPassword"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
+        <activity android:name=".AllDealsActivity" />
+        <activity android:name=".RestaurantDealsActivity" />
+        <activity android:name=".FilterActivity" />
+        <activity android:name=".EditActivity" />
+        <activity android:name=".RestaurantActivity" />
+        <activity android:name=".DetailsActivity" />
+        <activity android:name=".TodaysDealsActivity" />
+        <activity android:name=".HotDealsActivity" />
+        <activity android:name=".FeaturedDealsActivity" />
+        <activity android:name=".WeekendOfferActivity" />
+        <activity android:name=".Top10OfferActivity"></activity>
     </application>
 
 </manifest>
