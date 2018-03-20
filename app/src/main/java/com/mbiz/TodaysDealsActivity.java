@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.mbiz.adapter.PagerDeals;
 
-public class TodaysDealsActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener{
+public class TodaysDealsActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
 
     //This is our tablayout
     private TabLayout tabLayout;
@@ -30,12 +30,13 @@ public class TodaysDealsActivity extends AppCompatActivity implements TabLayout.
     //This is our viewPager
     private ViewPager viewPager;
     PagerDeals adapter;
+    public int number;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_todays_deals);
-
+        number = getIntent().getIntExtra("number", 0);
         //Initializing the tablayout
         tabLayout = findViewById(R.id.tabLayout);
 
@@ -64,7 +65,7 @@ public class TodaysDealsActivity extends AppCompatActivity implements TabLayout.
         tabLayout.setTabGravity(TabLayout.SCROLL_AXIS_HORIZONTAL);
 
         //Initializing viewPager
-        viewPager =  findViewById(R.id.pager);
+        viewPager = findViewById(R.id.pager);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
         //Creating our pager adapter

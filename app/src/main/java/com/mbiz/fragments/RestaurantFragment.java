@@ -1,9 +1,7 @@
 package com.mbiz.fragments;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,11 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.loopj.android.http.RequestParams;
-import com.mbiz.CustomActivity;
 import com.mbiz.DetailsActivity;
 import com.mbiz.R;
+import com.mbiz.TodaysDealsActivity;
 import com.mbiz.adapter.DealsAdapter;
 import com.mbiz.application.AppConstants;
+import com.mbiz.application.MyApp;
 import com.mbiz.model.Deals;
 
 import org.json.JSONArray;
@@ -31,7 +30,7 @@ import static com.facebook.FacebookSdk.getApplicationContext;
  * Created by Aquad on 16/03/2018.
  */
 
-public class RestaurantFragment extends CustomFragment implements CustomFragment.ResponseCallback{
+public class RestaurantFragment extends CustomFragment implements CustomFragment.ResponseCallback {
     private List<Deals> dealsList;
     private RecyclerView recyclerView;
     View.OnClickListener listener;
@@ -39,7 +38,7 @@ public class RestaurantFragment extends CustomFragment implements CustomFragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.activity_deals, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_deals_bhavesh, container, false);
         setResponseListener(this);
         recyclerView = rootView.findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
@@ -47,7 +46,7 @@ public class RestaurantFragment extends CustomFragment implements CustomFragment
         dealsList = new ArrayList<>();
         loadRecyclerViewData();
 //get the button view
-       // img_restaurant = rootView.findViewById(R.id.img_restaurant);
+        // img_restaurant = rootView.findViewById(R.id.img_restaurant);
         //set a onclick listener for when the button gets clicked
       /* img_restaurant.setOnClickListener(new View.OnClickListener() {
             //Start new list activity
@@ -64,14 +63,25 @@ public class RestaurantFragment extends CustomFragment implements CustomFragment
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        
+
         super.onCreate(savedInstanceState);
     }
 
 
     private void loadRecyclerViewData() {
 
-        postCall(getContext(), AppConstants.BASE_URL + "deals", new RequestParams(), "Please wait...", 1);
+        if (((TodaysDealsActivity) getActivity()).number == 3) {
+            postCall(getContext(), AppConstants.BASE_URL + "featureddeals", new RequestParams(), "Please wait...", 1);
+        } else if (((TodaysDealsActivity) getActivity()).number == 4) {
+            postCall(getContext(), AppConstants.BASE_URL + "weekenddeals", new RequestParams(), "Please wait...", 1);
+        } else if (((TodaysDealsActivity) getActivity()).number == 1) {
+            postCall(getContext(), AppConstants.BASE_URL + "todaydeals", new RequestParams(), "Please wait...", 1);
+        } else if (((TodaysDealsActivity) getActivity()).number == 5) {
+            postCall(getContext(), AppConstants.BASE_URL + "topdeals", new RequestParams(), "Please wait...", 1);
+        } else if (((TodaysDealsActivity) getActivity()).number == 2) {
+            postCall(getContext(), AppConstants.BASE_URL + "hotdeals", new RequestParams(), "Please wait...", 1);
+        } else
+            postCall(getContext(), AppConstants.BASE_URL + "deals", new RequestParams(), "Please wait...", 1);
 
     }
 
@@ -99,21 +109,27 @@ public class RestaurantFragment extends CustomFragment implements CustomFragment
             }
 
             //creating recyclerview adapter
-            DealsAdapter adapter = new DealsAdapter(dealsList, getApplicationContext(),  new DealsAdapter.ClickListener() {
-                @Override public void onPositionClicked(int position) {
+            DealsAdapter adapter = new DealsAdapter(dealsList, getApplicationContext(), new DealsAdapter.ClickListener() {
+                @Override
+                public void onPositionClicked(int position) {
                     // callback performed on click
-                    if(position==0){
+                    if (position == 0) {
                         Intent i = new Intent(getContext(), DetailsActivity.class);
                         startActivity(i);
                     }
                 }
 
-                @Override public void onLongClicked(int position) {
+                @Override
+                public void onLongClicked(int position) {
                     // callback performed on click
                 }
             });
             //setting adapter to recyclerview
             recyclerView.setAdapter(adapter);
+
+            if (dealsList.size() == 0) {
+                MyApp.popFinishableMessage("MBiz Message", "No deals available", getActivity());
+            }
         }
     }
 

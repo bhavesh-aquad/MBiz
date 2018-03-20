@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
@@ -8,23 +7,15 @@
         <item
             android:id="@+id/nav_todaysdeals"
             android:title="Today's Deals" />
-    </group>
-    <group android:id="@+id/hotdeals">
         <item
             android:id="@+id/nav_hotdeals"
             android:title="Hot Deals" />
-    </group>
-    <group android:id="@+id/featureddeals">
         <item
             android:id="@+id/nav_featureddeals"
             android:title="Featured Deals" />
-    </group>
-    <group android:id="@+id/weekend">
         <item
             android:id="@+id/nav_weekend_offer"
             android:title="Weekend Offer" />
-    </group>
-    <group android:id="@+id/top100ffer">
         <item
             android:id="@+id/nav_top10_offer"
             android:title="Top 10 Offer " />
