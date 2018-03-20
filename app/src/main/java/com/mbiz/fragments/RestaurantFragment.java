@@ -140,7 +140,7 @@ public class RestaurantFragment extends CustomFragment implements CustomFragment
 
     @Override
     public void onErrorReceived(String error) {
-
+        MyApp.popMessage("Error", error, getActivity());
     }
 }
 
