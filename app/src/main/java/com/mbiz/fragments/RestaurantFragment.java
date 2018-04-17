@@ -9,9 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.loopj.android.http.RequestParams;
+import com.mbiz.DealsCategoryActivity;
 import com.mbiz.DetailsActivity;
 import com.mbiz.R;
-import com.mbiz.TodaysDealsActivity;
 import com.mbiz.adapter.DealsAdapter;
 import com.mbiz.application.AppConstants;
 import com.mbiz.application.MyApp;
@@ -34,6 +34,7 @@ public class RestaurantFragment extends CustomFragment implements CustomFragment
     private List<Deals> dealsList;
     private RecyclerView recyclerView;
     View.OnClickListener listener;
+    DealsAdapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -45,7 +46,7 @@ public class RestaurantFragment extends CustomFragment implements CustomFragment
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         dealsList = new ArrayList<>();
         loadRecyclerViewData();
-//get the button view
+         //get the button view
         // img_restaurant = rootView.findViewById(R.id.img_restaurant);
         //set a onclick listener for when the button gets clicked
       /* img_restaurant.setOnClickListener(new View.OnClickListener() {
@@ -69,19 +70,26 @@ public class RestaurantFragment extends CustomFragment implements CustomFragment
 
 
     private void loadRecyclerViewData() {
-
-        if (((TodaysDealsActivity) getActivity()).number == 3) {
-            postCall(getContext(), AppConstants.BASE_URL + "featureddeals", new RequestParams(), "Please wait...", 1);
-        } else if (((TodaysDealsActivity) getActivity()).number == 4) {
-            postCall(getContext(), AppConstants.BASE_URL + "weekenddeals", new RequestParams(), "Please wait...", 1);
-        } else if (((TodaysDealsActivity) getActivity()).number == 1) {
-            postCall(getContext(), AppConstants.BASE_URL + "todaydeals", new RequestParams(), "Please wait...", 1);
-        } else if (((TodaysDealsActivity) getActivity()).number == 5) {
-            postCall(getContext(), AppConstants.BASE_URL + "topdeals", new RequestParams(), "Please wait...", 1);
-        } else if (((TodaysDealsActivity) getActivity()).number == 2) {
-            postCall(getContext(), AppConstants.BASE_URL + "hotdeals", new RequestParams(), "Please wait...", 1);
-        } else
-            postCall(getContext(), AppConstants.BASE_URL + "deals", new RequestParams(), "Please wait...", 1);
+        RequestParams p = new RequestParams();
+        p.put("category_id",17);
+        // yar kamal karte ho, ab dekho home pe drwer k click pe todays deal k click pe tab me first tab restaurent ka hai thik hai
+        // to uske liye apan ko koi condition nahi rakhni hai maine karke diya tha fir bhi tumne kaam bigad diya tha
+        if (((DealsCategoryActivity) getActivity()).number == 3) {
+            postCall(getContext(), AppConstants.BASE_URL + "getallfeatureddeals", p, "Please wait...", 1);
+        } else if (((DealsCategoryActivity) getActivity()).number == 4) {
+            postCall(getContext(), AppConstants.BASE_URL + "getallweekenddeals", p, "Please wait...", 1);
+        } else if (((DealsCategoryActivity) getActivity()).number == 1) {
+            postCall(getContext(), AppConstants.BASE_URL + "getalltodaydeals", p, "Please wait...", 1);
+        } else if (((DealsCategoryActivity) getActivity()).number == 5) {
+            postCall(getContext(), AppConstants.BASE_URL + "getalltopdeals", p, "Please wait...", 1);
+        } else if (((DealsCategoryActivity) getActivity()).number == 2) {
+            postCall(getContext(), AppConstants.BASE_URL + "getallhotdeals", p, "Please wait...", 1);
+        } else{
+            // ye ho gaya default call, baki tumne number laga rakhe hai unke case me dusra call ho jayega ab run karo
+            postCall(getContext(), AppConstants.BASE_URL + "getalltodaydeals", p, "Please wait...", 1);
+        // ho jayega na aise?? run karo ak bar
+        }
+//            postCall(getContext(), AppConstants.BASE_URL + "deals", new RequestParams(), "Please wait...", 1);
 
     }
 
@@ -91,17 +99,31 @@ public class RestaurantFragment extends CustomFragment implements CustomFragment
             JSONObject jsonResponse = null;
             try {
                 jsonResponse = new JSONObject(o.toString());
-                JSONArray dataArray = jsonResponse.getJSONArray("data");
+                JSONArray dataArray = jsonResponse.getJSONArray("count");
 
                 //traversing through all the object
                 for (int i = 0; i < dataArray.length(); i++) {
                     //getting data object from json array
                     JSONObject deals = dataArray.getJSONObject(i);
+
                     Deals add_deals = new Deals(
                             deals.getInt("id"),
                             deals.getString("name"),
-                            deals.getString("title"),
-                            deals.getString("image1"));
+                            deals.getString("merchant_name"),
+                            deals.getString("mtagline"),
+                            deals.getString("partner_distance"),
+                            deals.getString("mthumbnail"),
+//                            deals.getString("mflat"),
+//                            deals.getString("mbuilding"),
+//                            deals.getString("maddress1"),
+//                            deals.getString("maddress2"),
+//                            deals.getString("mtown"),
+//                            deals.getString("mcounty"),
+                            deals.getString("mpostcode"),
+                            deals.getString("mtown"));
+
+                    add_deals.setCategory_name(deals.optString("category_name"));
+//                            deals.getString("address"));
                     dealsList.add(add_deals);
                 }
             } catch (JSONException e) {
@@ -109,12 +131,12 @@ public class RestaurantFragment extends CustomFragment implements CustomFragment
             }
 
             //creating recyclerview adapter
-            DealsAdapter adapter = new DealsAdapter(dealsList, getApplicationContext(), new DealsAdapter.ClickListener() {
+            adapter = new DealsAdapter(dealsList, getApplicationContext(), new DealsAdapter.ClickListener() {
                 @Override
                 public void onPositionClicked(int position) {
                     // callback performed on click
-                    if (position == 0) {
-                        Intent i = new Intent(getContext(), DetailsActivity.class);
+                    if (position <= dealsList.size()) {
+                        Intent i = new Intent(getContext(), DetailsActivity.class).putExtra("id",dealsList.get(position).getId());
                         startActivity(i);
                     }
                 }
@@ -127,9 +149,9 @@ public class RestaurantFragment extends CustomFragment implements CustomFragment
             //setting adapter to recyclerview
             recyclerView.setAdapter(adapter);
 
-            if (dealsList.size() == 0) {
-                MyApp.popFinishableMessage("MBiz Message", "No deals available", getActivity());
-            }
+//            if (dealsList.size() == 0) {
+//                MyApp.popFinishableMessage("MBiz Message", "No deals available", getActivity());
+//            }
         }
     }
 
@@ -141,6 +163,16 @@ public class RestaurantFragment extends CustomFragment implements CustomFragment
     @Override
     public void onErrorReceived(String error) {
         MyApp.popMessage("Error", error, getActivity());
+    }
+
+    public void applyFilter(String filterString) {
+        List<Deals> temp = new ArrayList();
+        for (Deals d : dealsList) {
+            if (filterString.contains(d.getCategory_name())) {
+                temp.add(d);
+            }
+        }
+        adapter.updateList(temp);
     }
 }
 

@@ -15,6 +15,8 @@ import com.mbiz.HomeActivity;
 import com.mbiz.R;
 import com.mbiz.RestaurantActivity;
 import com.mbiz.application.AppConstants;
+import com.mbiz.application.MyApp;
+import com.mbiz.application.SingleInstance;
 import com.mbiz.model.HomeRestaurant;
 import com.mbiz.model.Restaurant;
 import com.squareup.picasso.Picasso;
@@ -94,14 +96,21 @@ public class RestaurantHomeAdapter extends RecyclerView.Adapter<RestaurantHomeAd
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    if (restaurantList.get(getLayoutPosition()).getChild().size() > 0) {
+//                        Object o = restaurantList.get(getLayoutPosition());
+//                        if (getLayoutPosition() == 0) {
+//                            mCtx.startActivity(new Intent(mCtx, AllDealsActivity.class));
+                        SingleInstance.getInstance().setHomeChild(restaurantList.get(getLayoutPosition()).getChild());
+//
+//                        } else if (getLayoutPosition() == 1)
+                        mCtx.startActivity(new Intent(mCtx, AllDealsActivity.class));
+//                        else
+//                            mCtx.startActivity(new Intent(mCtx, DealsActivity.class));
+                    } else {
+                        MyApp.popMessage("Message", "No data available", mCtx);
+                    }
 //                    item data reference
-                    Object o = restaurantList.get(getLayoutPosition());
-                    if (getLayoutPosition() == 0)
-                        mCtx.startActivity(new Intent(mCtx, AllDealsActivity.class));
-                    else if (getLayoutPosition() == 1)
-                        mCtx.startActivity(new Intent(mCtx, AllDealsActivity.class));
-                    else
-                        mCtx.startActivity(new Intent(mCtx, DealsActivity.class));
+//
                 }
             });
         }

@@ -15,6 +15,7 @@ import com.mbiz.AllDealsActivity;
 import com.mbiz.DealsallActivity;
 import com.mbiz.DetailsActivity;
 import com.mbiz.R;
+import com.mbiz.application.MyApp;
 import com.mbiz.model.Deals;
 import com.squareup.picasso.Picasso;
 
@@ -25,6 +26,11 @@ import java.util.List;
  * Created by Aquad on 26-12-2017.
  */
 public class DealsAdapter extends RecyclerView.Adapter<DealsAdapter.DealsViewHolder> {
+
+    public void updateList(List<Deals> list) {
+        dealsList = list;
+        notifyDataSetChanged();
+    }
 
     public interface ClickListener {
 
@@ -55,9 +61,32 @@ public class DealsAdapter extends RecyclerView.Adapter<DealsAdapter.DealsViewHol
     public void onBindViewHolder(DealsViewHolder holder, int position) {
         //getting the product of the specified position
         Deals deals = dealsList.get(position);
-        holder.rest_name.setText(deals.getName());
-        holder.offer.setText(deals.getTitle());
-        Picasso.with(mCtx).load(deals.getImage1()).into(holder.imageView);
+        holder.offer.setText(deals.getName());
+        holder.rest_name.setText(deals.getMerchant_name());
+        holder.rest_tag.setText(deals.getMtagline());
+
+        try {
+            holder.dist.setText("" + MyApp.distance(Double.parseDouble(deals.getMlatitude()),
+                    Double.parseDouble(deals.getMlongitude()),
+                    Double.parseDouble(MyApp.getSharedPrefString("CLAT")),
+                    Double.parseDouble(MyApp.getSharedPrefString("CLONG"))));
+        } catch (Exception e) {
+        }
+        //isme apan ko distance set karna hai
+//        holder.add.setText(deals.getMflat());  ab tum batao current lat lng kahanikale
+//        holder.add.setText(deals.getMbuilding());
+//        holder.add.setText(deals.getMaddress1());ha//ni aa rha hai abhi bhipe
+//        holder.add.setText(deals.getMaddress2());
+//        holder.add.setText(deals.getMtown());
+//        holder.add.setText(deals.getMcounty());
+        holder.add.setText(deals.getMpostcode());
+        holder.add.setText(deals.getMtown());
+//        holder.add.setText(deals.getAddressAll());
+
+        try {
+            Picasso.with(mCtx).load(deals.getMthumbnail()).into(holder.imageView);
+        } catch (Exception e) {
+        }
 
     }
 
@@ -66,9 +95,9 @@ public class DealsAdapter extends RecyclerView.Adapter<DealsAdapter.DealsViewHol
         return dealsList.size();
     }
 
-    class DealsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    class DealsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        TextView rest_name, offer;
+        TextView rest_name, offer, rest_tag, dist, add;
         ImageView imageView;
         Button btn_viewdeals;
         private WeakReference<View.OnClickListener> listenerRef;
@@ -76,12 +105,16 @@ public class DealsAdapter extends RecyclerView.Adapter<DealsAdapter.DealsViewHol
         public DealsViewHolder(View itemView) {
             super(itemView);
 
-            rest_name = itemView.findViewById(R.id.rest_name);
             offer = itemView.findViewById(R.id.offer);
+            rest_name = itemView.findViewById(R.id.rest_name);
+            rest_tag = itemView.findViewById(R.id.rest_tag);
+            dist = itemView.findViewById(R.id.dist);
+            add = itemView.findViewById(R.id.add);
             imageView = itemView.findViewById(R.id.imageView);
             btn_viewdeals = itemView.findViewById(R.id.btn_viewdeals);
             itemView.setOnClickListener(this);
             btn_viewdeals.setOnClickListener(this);
+            btn_viewdeals.getLayoutParams();
         }
 
         @Override

@@ -40,8 +40,8 @@ public class DealsallAdapter extends RecyclerView.Adapter<DealsallAdapter.Dealsa
     public void onBindViewHolder(DealsallViewholder holder, int position) {
         Dealsall dealsall = dealsallList.get(position);
 
-        holder.name.setText(dealsall.getName());
-        holder.offer.setText(dealsall.getOffer());
+        holder.name.setText(dealsall.getMname());
+        holder.offer.setText(dealsall.getMoffer());
         holder.image.setImageDrawable(mCtx.getResources().getDrawable(dealsall.getImage()));
         holder.mapicon.setImageDrawable(mCtx.getResources().getDrawable(dealsall.getMapicon()));
     }

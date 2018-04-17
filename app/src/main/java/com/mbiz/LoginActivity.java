@@ -128,6 +128,11 @@ public class LoginActivity extends CustomActivity implements GoogleApiClient.OnC
                     p.put("email", et_login_username.getText().toString());
                     p.put("password", et_login_password.getText().toString());
                     postCall(getContext(), AppConstants.BASE_URL + "douserlogin", p, "Logging you in..", 1);
+
+                    Intent intent=new Intent(getApplicationContext(),ForgotPassword.class);
+                    intent.putExtra ( "name", et_login_username.getText().toString() );
+                    intent.putExtra("password", et_login_password.getText().toString());
+                    startActivity(intent);
                 }
             }
         });

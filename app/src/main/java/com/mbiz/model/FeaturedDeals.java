@@ -8,8 +8,8 @@ public class FeaturedDeals {
 
     private String id;
     private String merchant_id;
-    private String name;
-    private String title;
+    private String mname;
+    private String mtitle;
     private String category_id;
     private String enabled;
     private String type;
@@ -36,6 +36,7 @@ public class FeaturedDeals {
     private String active_date;
     private String merchant_name;
     private String category_name;
+    private String mthumbnail;
 
     public String getId() {
         return id;
@@ -53,20 +54,20 @@ public class FeaturedDeals {
         this.merchant_id = merchant_id;
     }
 
-    public String getName() {
-        return name;
+    public String getMname() {
+        return mname;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setMname(String name) {
+        this.mname = name;
     }
 
-    public String getTitle() {
-        return title;
+    public String getMtitle() {
+        return mtitle;
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        this.mtitle = title;
     }
 
     public String getCategory_id() {
@@ -203,6 +204,12 @@ public class FeaturedDeals {
 
     public void setDthumbnail(String dthumbnail) {
         this.dthumbnail = dthumbnail;
+    }
+
+    public String getMthumbnail() { return mthumbnail; }
+
+    public void setMthumbnail(String mthumbnail) {
+        this.mthumbnail = mthumbnail;
     }
 
     public String getDbanner() {

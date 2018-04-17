@@ -1,6 +1,7 @@
 package com.mbiz;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
@@ -27,6 +28,7 @@ public class SignupActivity extends CustomActivity implements CustomActivity.Res
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
+
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -70,7 +72,6 @@ public class SignupActivity extends CustomActivity implements CustomActivity.Res
                 else if (et_signup_confirmpassword.getText().toString().length()==0)
                     et_signup_confirmpassword.setError("Please enter Password again");
                 else {
-
                     RequestParams p = new RequestParams();
                   //  p.put("fname", et_first_name.getText().toString());
                   //  p.put("lname", et_last_name.getText().toString());
@@ -84,7 +85,24 @@ public class SignupActivity extends CustomActivity implements CustomActivity.Res
                     String password = et_signup_password.getText().toString();
                     String confirmpassword = et_signup_confirmpassword.getText().toString();
 
-                    if(password.equals(confirmpassword))
+                    String email = et_signup_email.getText().toString().trim();
+
+                    String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+//                    if (email.matches(emailPattern))
+//                    {
+//                        Toast.makeText(getContext(),"valid email address",Toast.LENGTH_SHORT).show();
+//                    }
+//                    else
+//                    {
+//                        Toast.makeText(getContext(),"Invalid email address", Toast.LENGTH_SHORT).show();
+//                    }
+
+ //                   Intent intent = new Intent( SignupActivity.this, EditActivity.class );
+ //                   intent.putExtra ( "Email", et_signup_email.getText().toString() );
+ //                   intent.putExtra ( "Password", et_signup_password.getText().toString() );
+ //                   startActivity(intent);
+
+                    if(password.equals(confirmpassword) || email.matches(emailPattern))
                         postCall(getContext(), AppConstants.BASE_URL + "signup", p, "Registering you...", 1);
                     else{
                         Toast.makeText(getApplicationContext(), "Password and confirm password should be same", Toast.LENGTH_LONG).show();
@@ -95,15 +113,6 @@ public class SignupActivity extends CustomActivity implements CustomActivity.Res
             }
         });
 
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            finish();
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -139,4 +148,25 @@ public class SignupActivity extends CustomActivity implements CustomActivity.Res
     private Context getContext() {
         return SignupActivity.this;
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 }
+
+
+//    Intent intent = new Intent ( FirstAcvity.this, SecondActivity.class );
+//   intent.putExtra ( "TextBox", editText.getText().toString() );
+//        startActivity(intent);
+//        Now, in second activity, use following code,
+
+//        Intent i = getIntent();
+//        String text = i.getStringExtra ( "TextBox","" );
+// Now set this value to EditText
+//        secondEditText.setText ( text );
+//        secondEditText.setEnable(false);

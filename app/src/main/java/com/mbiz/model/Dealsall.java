@@ -7,15 +7,15 @@ package com.mbiz.model;
 public class Dealsall {
 
     private int id;
-    private String name;
-    private String offer;
+    private String mname;
+    private String moffer;
     private int image;
     private int mapicon;
 
     public Dealsall(int id, String name, String offer, int image, int mapicon) {
         this.id = id;
-        this.name = name;
-        this.offer = offer;
+        this.mname = name;
+        this.moffer = offer;
         this.image = image;
         this.mapicon = mapicon;
     }
@@ -24,12 +24,12 @@ public class Dealsall {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public String getMname() {
+        return mname;
     }
 
-    public String getOffer() {
-        return offer;
+    public String getMoffer() {
+        return moffer;
     }
 
     public int getImage() {

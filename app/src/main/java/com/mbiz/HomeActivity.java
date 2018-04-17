@@ -18,34 +18,41 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.RequestParams;
 import com.mbiz.adapter.RestaurantHomeAdapter;
 import com.mbiz.application.AppConstants;
 import com.mbiz.application.MyApp;
+import com.mbiz.application.SingleInstance;
 import com.mbiz.model.CategoryChild;
+import com.mbiz.model.CategoryChildDeals;
+import com.mbiz.model.Deals;
 import com.mbiz.model.HomeRestaurant;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 
 import ss.com.bannerslider.banners.Banner;
-import ss.com.bannerslider.banners.DrawableBanner;
+import ss.com.bannerslider.banners.RemoteBanner;
 import ss.com.bannerslider.views.BannerSlider;
 
 public class HomeActivity extends CustomActivity implements CustomActivity.ResponseCallback,
         NavigationView.OnNavigationItemSelectedListener {
 
     private static final Integer[] IMAGES = {R.drawable.img1, R.drawable.img2, R.drawable.img3};
-    private ImageView filter;
+  // HashMap<String,String> IMAGES = new HashMap<String, String>();
+    private ImageView filter, toolbar_image;
     private List<HomeRestaurant> restaurantList = new ArrayList<>();
     private RecyclerView recyclerView;
     private BannerSlider bannerSlider;
     private ProgressBar progress_bar;
+    private List<String> spinnerCategoryList= new ArrayList<String>();
+    private List<String >getSpinnersubcategoryList= new ArrayList<>();
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -54,8 +61,12 @@ public class HomeActivity extends CustomActivity implements CustomActivity.Respo
 
         setResponseListener(this);
 
+        //postCall(getContext(), AppConstants.LOGO_URL, new RequestParams(), "Please wait...", 3);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar_image = findViewById(R.id.toolbar_image);
         setSupportActionBar(toolbar);
+        //Picasso.with(this).load(url1).into(toolbar_image);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayShowCustomEnabled(true);
@@ -71,11 +82,8 @@ public class HomeActivity extends CustomActivity implements CustomActivity.Respo
         navigationView.setNavigationItemSelectedListener(this);
         View header = navigationView.getHeaderView(0);
 
-
         filter = findViewById(R.id.filter);
-        //bt_magic_biz = findViewById(R.id.bt_magic_biz);
-        // search_btn = findViewById(R.id.search_btn);
-        // logout = findViewById(R.id.logout);
+
         init();
 
      /*   spinner = findViewById(R.id.spinner);
@@ -107,22 +115,6 @@ public class HomeActivity extends CustomActivity implements CustomActivity.Respo
         });
 
 
- /*       bt_magic_biz.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(HomeActivity.this, AllDealsActivity.class);
-                startActivity(intent);
-            }
-        });           */
-
-      /*  search_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(HomeActivity.this, DealsActivity.class);
-                startActivity(intent);
-            }
-        });  */
-
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
 
@@ -138,7 +130,10 @@ public class HomeActivity extends CustomActivity implements CustomActivity.Respo
     private void loadRecyclerViewData() {
 
         postCall(getApplicationContext(), AppConstants.HOME_URL, new RequestParams(), "Please wait...", 1);
+    }
 
+    private void init() {
+        postCall(getContext(), AppConstants.BANNER_URL, new RequestParams(), "Please wait...", 2);
     }
 
     private Context getContext() {
@@ -155,6 +150,8 @@ public class HomeActivity extends CustomActivity implements CustomActivity.Respo
             }
 
             JSONArray array = o.optJSONArray("data");
+            tabsList = new ArrayList<>();
+            spinnerCategoryList = new ArrayList<>();
             for (int i = 0; i < array.length(); i++) {
                 HomeRestaurant h = new HomeRestaurant();
                 JSONObject oo = array.optJSONObject(i);
@@ -165,32 +162,52 @@ public class HomeActivity extends CustomActivity implements CustomActivity.Respo
                 h.setImage(oo.optString("image"));
                 h.setParent(oo.optString("parent"));
                 h.setParent_id(oo.optString("parent_id"));
+                tabsList.add(h.getCategory_name());
+                spinnerCategoryList.add(h.getCategory_name());
+                List<CategoryChild> childList = new ArrayList<>();
+                JSONArray innerArr = oo.optJSONArray("child");
+                    for (int j = 0; j < innerArr.length(); j++) {
+                        JSONObject io = innerArr.optJSONObject(j);
+                        CategoryChild c = new CategoryChild();
+                        c.setCategory_name(io.optString("category_name"));
+                        c.setChild(io.optString("child"));
+                        c.setDisplay_order(io.optString("display_order"));
+                        c.setIcon(io.optString("icon"));
+                        c.setId(io.optString("id"));
+                        c.setImage(io.optString("image"));
+                        c.setSlug(io.optString("slug"));
+                        c.setParent_id(io.optString("parent_id"));
+                        c.setParent(io.optString("parent"));
+                        childList.add(c);
+                        List<CategoryChild> spinnerSubcategoryList = new ArrayList<>();
+                        spinnerSubcategoryList.add(c);
 
-//                List<CategoryChild> childList = new ArrayList<>();
-//                JSONArray innerArr = oo.optJSONArray("child");
-//                for (int j = 0; j < innerArr.length(); j++) {
-//                    JSONObject io = innerArr.optJSONObject(i);
-//                    CategoryChild c = new CategoryChild();
-//                    c.setCategory_name(io.optString("category_name"));
-//                    c.setChild(io.optString("child"));
-//                    c.setDisplay_order(io.optString("display_order"));
-//                    c.setIcon(io.optString("icon"));
-//                    c.setId(io.optString("id"));
-//                    c.setImage(io.optString("image"));
-//                    c.setSlug(io.optString("slug"));
-//                    c.setParent_id(io.optString("parent_id"));
-//                    c.setParent(io.optString("parent"));
-//
-//                    childList.add(c);
-//                }
 
-//                h.setChild(childList);
+                   //     List<Deals> dealsList = new ArrayList<>();
+                     //   JSONArray innerArr1 = io.optJSONArray("child");
+                       // for(int k = 0; k < innerArr1.length(); k++) {
+                         //   JSONObject ioo = innerArr1.optJSONObject(k);
+                         //   Deals cd = new Deals();
+                         //   cd.setId(ioo.optInt("id"));
+                         //   cd.setName(ioo.optString("name"));
+                         //   cd.setTitle(ioo.optString("title"));
+                         //   cd.setMthumbnail(ioo.optString("mthumbnail"));
+                         //   dealsList.add(cd);
+                       // }
+                      //  c.setChildList(dealsList);
+                    }
+
+                h.setChild(childList);
                 restaurantList.add(h);
+
                 RestaurantHomeAdapter rvadapter = new RestaurantHomeAdapter(this, restaurantList);
                 //setting adapter to recyclerview
                 recyclerView.setAdapter(rvadapter);
             }
-//            List<HomeRestaurant> list = new Gson().fromJson(o.optJSONArray("data").toString()
+
+            SingleInstance.getInstance().setTabsList(tabsList);
+//
+// List<HomeRestaurant> list = new Gson().fromJson(o.optJSONArray("data").toString()
 //                    , new TypeToken<List<HomeRestaurant>>() {
 //                    }.getType());
 
@@ -201,7 +218,41 @@ public class HomeActivity extends CustomActivity implements CustomActivity.Respo
             //creating recyclerview adapter
 
         }
-    }
+        if (callNumber == 2) {
+//            progress_bar.setVisibility(View.GONE);
+            if (o.optInt("status") != 200) {
+                MyApp.popMessage("MBiz", o.optString("message"), getContext());
+                return;
+            }
+            bannerSlider = findViewById(R.id.banner_slider);
+            progress_bar = findViewById(R.id.progress_bar);
+            JSONArray array = o.optJSONArray("data");
+            List<Banner> banners = new ArrayList<>();
+//            List<BannerSlider> sliderList = new ArrayList<>();
+            for (int i = 0; i < array.length(); i++) {
+                JSONObject oo = array.optJSONObject(i);
+                String image = oo.optString("image");
+
+                banners.add(new RemoteBanner(image));
+                }
+                bannerSlider.setBanners(banners);
+            }
+        if(callNumber == 3){
+            if(o.optInt("status") != 200){
+                MyApp.popMessage("MBiz", o.optString("message"), getContext());
+                return;
+            }
+            toolbar_image = findViewById(R.id.toolbar_image);
+            JSONArray array = o.optJSONArray("data");
+            for (int i = 0; i< array.length(); i++){
+                JSONObject oo = array.optJSONObject(i);
+                String logo = oo.optString("logo");
+                Picasso.with(getContext()).load("logo").fit().into(toolbar_image);
+                //toolbar_image.setImageResource(Integer.parseInt("logo"));
+
+            }
+            }
+        }
 
     @Override
     public void onJsonArrayResponseReceived(JSONArray a, int callNumber) {
@@ -213,16 +264,7 @@ public class HomeActivity extends CustomActivity implements CustomActivity.Respo
 
     }
 
-
-    private void init() {
-        bannerSlider = findViewById(R.id.banner_slider);
-        progress_bar = findViewById(R.id.progress_bar);
-        List<Banner> banners = new ArrayList<>();
-        for (int i = 0; i < IMAGES.length; i++)
-            banners.add(new DrawableBanner(IMAGES[i]));
-        bannerSlider.setBanners(banners);
-
-    }
+    private List<String> tabsList = new ArrayList<>();
 
     /**
      * RecyclerView item decoration - give equal margin around grid item
@@ -248,9 +290,9 @@ public class HomeActivity extends CustomActivity implements CustomActivity.Respo
                 outRect.left = spacing - column * spacing / spanCount; // spacing - column * ((1f / spanCount) * spacing)
                 outRect.right = (column + 1) * spacing / spanCount; // (column + 1) * ((1f / spanCount) * spacing)
 
-                if (position < spanCount) { // top edge
+              /*  if (position < spanCount) { // top edge
                     outRect.top = spacing;
-                }
+                }  */
                 outRect.bottom = spacing; // item bottom
             } else {
                 outRect.left = column * spacing / spanCount; // column * ((1f / spanCount) * spacing)
@@ -318,26 +360,29 @@ public class HomeActivity extends CustomActivity implements CustomActivity.Respo
         int id = item.getItemId();
 
         if (id == R.id.nav_todaysdeals) {
-            Intent i = new Intent(HomeActivity.this, TodaysDealsActivity.class).putExtra("number", 1);
+            Intent i = new Intent(HomeActivity.this, DealsCategoryActivity.class).putExtra("number", 1);
             startActivity(i);
 
         } else if (id == R.id.nav_hotdeals) {
-            Intent i = new Intent(HomeActivity.this, TodaysDealsActivity.class).putExtra("number", 2);
+            Intent i = new Intent(HomeActivity.this, DealsCategoryActivity.class).putExtra("number", 2);
             startActivity(i);
 
         } else if (id == R.id.nav_featureddeals) {
-            Intent i = new Intent(HomeActivity.this, TodaysDealsActivity.class).putExtra("number", 3);
+            Intent i = new Intent(HomeActivity.this, DealsCategoryActivity.class).putExtra("number", 3);
             startActivity(i);
 
         } else if (id == R.id.nav_weekend_offer) {
-            Intent i = new Intent(HomeActivity.this, TodaysDealsActivity.class).putExtra("number", 4);
+            Intent i = new Intent(HomeActivity.this, DealsCategoryActivity.class).putExtra("number", 4);
             startActivity(i);
 
         } else if (id == R.id.nav_top10_offer) {
-            Intent i = new Intent(HomeActivity.this, TodaysDealsActivity.class).putExtra("number", 3);
+            Intent i = new Intent(HomeActivity.this, DealsCategoryActivity.class).putExtra("number", 3);
             startActivity(i);
 
-        } else if (id == R.id.nav_logout) {
+        }else if (id == R.id.nav_edit) {
+            Intent i = new Intent(HomeActivity.this, EditActivity.class).putExtra("number", 3);
+            startActivity(i);
+        }else if (id == R.id.nav_logout) {
             //logout.setOnClickListener(new View.OnClickListener() {
             //@Override
             //  public void onClick(View view) {

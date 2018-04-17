@@ -9,20 +9,21 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.mbiz.R;
+import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by DARSHAN on 11/20/2017.
  */
 
 public class SlidingImage_Adapter extends PagerAdapter {
-    private ArrayList<Integer> IMAGES;
+    private HashMap<String, String> IMAGES;
     private LayoutInflater inflater;
     private Context context;
 
 
-    public SlidingImage_Adapter(Context context, ArrayList<Integer> IMAGES) {
+    public SlidingImage_Adapter(Context context, HashMap<String, String> IMAGES) {
         this.context = context;
         this.IMAGES=IMAGES;
         inflater = LayoutInflater.from(context);
@@ -47,8 +48,8 @@ public class SlidingImage_Adapter extends PagerAdapter {
                 .findViewById(R.id.image);
 
 
-        imageView.setImageResource(IMAGES.get(position));
-
+        //imageView.setImageResource(Integer.parseInt(IMAGES.get(position)));
+        Picasso.with(context).load("http://amplibiz.com/api/getbanners").into(imageView);
         view.addView(imageLayout, 0);
 
         return imageLayout;

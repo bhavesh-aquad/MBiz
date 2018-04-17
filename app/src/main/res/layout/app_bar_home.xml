@@ -21,12 +21,12 @@
             app:popupTheme="@style/AppTheme.PopupOverlay">
 
             <ImageView
-                android:id="@+id/bt_magic_biz"
+                android:id="@+id/toolbar_image"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/dim_35"
                 android:layout_centerInParent="true"
                 android:layout_gravity="center"
-                android:src="@drawable/magicbiz" />
+                android:src="@drawable/magicbiz"/>
 
 
             <ImageButton

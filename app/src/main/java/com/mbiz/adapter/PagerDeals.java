@@ -30,55 +30,60 @@ public class PagerDeals extends FragmentPagerAdapter {
      */
 
 //    private final List<Fragment> restaurantList = new ArrayList<>();
-        //integer to count number of tabs
-        int tabCount;
+    //integer to count number of tabs
+    int tabCount;
+    RestaurantFragment restaurantFragment;
+    ActivitiesFragement activitiesFragment;
+    TakeawaysFragment takeawaysFragment;
 
-        //Constructor to the class
-        public PagerDeals(FragmentManager fm, int tabCount) {
-            super(fm);
-            //Initializing tab count
-            this.tabCount= tabCount;
-        }
+    //Constructor to the class
+    public PagerDeals(FragmentManager fm, int tabCount, RestaurantFragment restaurantFragment, ActivitiesFragement activitiesFragment,
+                      TakeawaysFragment takeawaysFragment) {
+        super(fm);
+        //Initializing tab count
+        this.tabCount = tabCount;
+        this.restaurantFragment = restaurantFragment;
+        this.activitiesFragment = activitiesFragment;
+        this.takeawaysFragment = takeawaysFragment;
+    }
 
-        //Overriding method getItem
-        @Override
-        public Fragment getItem(int position) {
-            //Returning the current tabs
-            switch (position) {
-                case 0:
-                    RestaurantFragment restaurantFragment = new RestaurantFragment();
-                    return restaurantFragment;
-                case 1:
-                    ActivitiesFragement activitiesFragment = new ActivitiesFragement();
-                    return activitiesFragment;
-                case 2:
-                    TakeawaysFragment takeawaysFragment = new TakeawaysFragment();
-                    return takeawaysFragment;
-                case 3:
-                    TradeFragment tradeFragment = new TradeFragment();
-                    return tradeFragment;
-                case 4:
-                    RetailsFragment retailsFragment = new RetailsFragment();
-                    return retailsFragment;
-                case 5:
-                    PubsFragment pubsFragment = new PubsFragment();
-                    return pubsFragment;
-                case 6:
-                    HotelsFragment hotelsFragment = new HotelsFragment();
-                    return hotelsFragment;
-                case 7:
-                    OtherFragment otherFragment = new OtherFragment();
-                    return otherFragment;
+    //Overriding method getItem
+    @Override
+    public Fragment getItem(int position) {
+        //Returning the current tabs
+        switch (position) {
+            // ab dekho ak apan ko ye karna hai k only restaurent wali tab k liye loading dialog show karna hai thik hai
+            case 0:
+                return restaurantFragment;
+            case 1:
+                return activitiesFragment;
+            case 2:
+                return takeawaysFragment;
+            case 3:
+                TradeFragment tradeFragment = new TradeFragment();
+                return tradeFragment;
+            case 4:
+                RetailsFragment retailsFragment = new RetailsFragment();
+                return retailsFragment;
+            case 5:
+                PubsFragment pubsFragment = new PubsFragment();
+                return pubsFragment;
+            case 6:
+                HotelsFragment hotelsFragment = new HotelsFragment();
+                return hotelsFragment;
+            case 7:
+                OtherFragment otherFragment = new OtherFragment();
+                return otherFragment;
 
-                default:
-                    return null;
-            }
-        }
-
-        //Overriden method getCount to get the number of tabs
-        @Override
-        public int getCount() {
-            return tabCount;
+            default:
+                return null;
         }
     }
+
+    //Overriden method getCount to get the number of tabs
+    @Override
+    public int getCount() {
+        return tabCount;
+    }
+}
 

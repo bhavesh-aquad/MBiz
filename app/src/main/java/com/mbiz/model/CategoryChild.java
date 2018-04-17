@@ -1,5 +1,8 @@
 package com.mbiz.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by dell on 19-Mar-18.
  */
@@ -15,6 +18,16 @@ public class CategoryChild {
     String display_order;
     String status;
     String child;
+    String category_id;
+    List<Deals> childList = new ArrayList<>();
+
+    public List<Deals> getChildList() {
+        return childList;
+    }
+
+    public void setChildList(List<Deals> childList) {
+        this.childList = childList;
+    }
 
     public String getId() {
         return id;
@@ -94,5 +107,12 @@ public class CategoryChild {
 
     public void setChild(String child) {
         this.child = child;
+    }
+
+    public String getCategory_id() {
+        return category_id;
+    }
+    public void setCategory_id(String category_id) {
+        this.category_id = category_id;
     }
 }

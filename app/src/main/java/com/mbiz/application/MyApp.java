@@ -131,6 +131,7 @@ public class MyApp extends Application {
 
     }
 
+
     public static boolean isConnectingToInternet(Context context) {
         ConnectivityManager connectivity = (ConnectivityManager) context
                 .getSystemService(Context.CONNECTIVITY_SERVICE);

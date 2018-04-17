@@ -4,12 +4,30 @@
     xmlns:window="http://schemas.android.com/apk/res-auto"
     package="com.mbiz">
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+
+
+    <uses-sdk
+        android:minSdkVersion="16"
+        android:targetSdkVersion="27" />
+
+    <!-- Required to show current location -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <!-- Required OpenGL ES 2.0. for Maps V2 -->
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+
+
 
     <application
         android:name=".application.MyApp"
@@ -49,6 +67,11 @@
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
 
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyB46Kont-XDwI7PKNvrZkVam4RegMgV3yo" />
+
         <activity
             android:name="com.facebook.CustomTabActivity"
             android:exported="true">
@@ -80,7 +103,7 @@
         <activity android:name=".EditActivity" />
         <activity android:name=".RestaurantActivity" />
         <activity android:name=".DetailsActivity" />
-        <activity android:name=".TodaysDealsActivity" />
+        <activity android:name=".DealsCategoryActivity" />
         <activity android:name=".HotDealsActivity" />
         <activity android:name=".FeaturedDealsActivity" />
         <activity android:name=".WeekendOfferActivity" />

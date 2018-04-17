@@ -2,11 +2,11 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="220dp">
+    android:layout_height="wrap_content">
     <ImageView
         android:id="@+id/image"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="@dimen/dim_220"
         android:src="@drawable/img4"
         android:scaleType="fitXY"
         android:text="Category"
@@ -23,5 +23,10 @@
         android:textColor="#FFFFFF"
         android:gravity="center"
         android:layout_centerInParent="true"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dim_2"
+        android:layout_below="@+id/image"
+        android:background="#FFD700"/>
 </RelativeLayout>
 

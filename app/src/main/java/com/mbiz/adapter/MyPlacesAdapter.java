@@ -1,6 +1,8 @@
 package com.mbiz.adapter;
 
 import android.content.Context;
+import android.location.LocationManager;
+import android.support.v4.app.ActivityCompat;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +29,10 @@ import java.util.ArrayList;
  */
 
 public class MyPlacesAdapter extends BaseAdapter implements Filterable {
+    private static final int REQUEST_LOCATION = 1;
+    LocationManager locationManager;
+    String lattitude,longitude;
+
     private LayoutInflater mInflater;
     Context con;
     ArrayList<MyGooglePlaces> places=new ArrayList<MyGooglePlaces>();
@@ -86,8 +92,8 @@ public class MyPlacesAdapter extends BaseAdapter implements Filterable {
     {
         //pass your current latitude and longitude to find nearby and ranky=distance means places will be found in ascending order
         // according to distance
-        double latitude=55.378051;
-        double longitude=-3.435973;
+        double latitude=55.378051;  //currentlat;
+        double longitude=-3.435973; //currentlong;
         String API_KEY="AIzaSyByodZEsDBTC-J3brJ39JiYTkqbtJhlSKo";
         String url= "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+latitude+","+longitude+"&rankby=distance&name="+constraint+"&key="+API_KEY;
         return getPlaces(url);

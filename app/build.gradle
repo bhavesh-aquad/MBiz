@@ -1,16 +1,16 @@
 apply plugin: 'com.android.application'
 
 android {
-    signingConfigs {
-        config {
-            keyAlias 'MBiz'
-            keyPassword '111111'
-            storeFile file('D:/Android/Projects/MBiz/MBiz_key.jks')
-            storePassword '111111'
-        }
-    }
+//    signingConfigs {
+//        config {
+//            keyAlias 'MBiz'
+//            keyPassword '111111'
+//            storeFile file('C:/bhavesh/MBiz/MBiz_key.jks')
+//            storePassword '111111'
+//        }
+//    }
     compileSdkVersion 27
-    buildToolsVersion '27.0.2'
+    buildToolsVersion '27.0.3'
     defaultConfig {
         applicationId "com.mbiz"
         minSdkVersion 17
@@ -24,9 +24,9 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
-        debug {
-            signingConfig signingConfigs.config
-        }
+//        debug {
+//            signingConfig signingConfigs.config
+//        }
     }
 }
 repositories {
@@ -41,10 +41,12 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    implementation 'com.ajts.androidmads.fontutils:fontutils:1.0.0'
     implementation 'com.facebook.android:facebook-login:[4,5)'
     implementation 'com.android.support:appcompat-v7:27.0.2'
-    compile 'com.google.firebase:firebase-auth:11.0.4'
-    compile 'com.google.android.gms:play-services-auth:11.0.4'
+    compile 'com.google.firebase:firebase-auth:12.0.0'
+    compile 'com.google.android.gms:play-services-auth:12.0.0'
+    implementation 'com.google.android.gms:play-services-maps:12.0.0'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     implementation 'com.android.support:design:27.0.2'
     implementation 'com.android.support:cardview-v7:27.0.2'
@@ -54,6 +56,8 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.0'
     implementation 'com.squareup.picasso:picasso:2.5.2'
     implementation 'com.ss.bannerslider:bannerslider:1.8.0'
+    compile 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     testCompile 'junit:junit:4.12'
 }
 

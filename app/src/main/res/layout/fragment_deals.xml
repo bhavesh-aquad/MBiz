@@ -1,11 +1,17 @@
-<android.support.v4.widget.NestedScrollView
-    android:layout_width="match_parent"
+<FrameLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:context="com.mbiz.DealsActivity">
 
-    <LinearLayout
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/recyclerView"/>
+
+<!--    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -130,6 +136,6 @@
                 android:gravity="center"
                 android:layout_centerInParent="true"/>
         </RelativeLayout>
-    </LinearLayout>
+    </LinearLayout>                  -->
 
-</android.support.v4.widget.NestedScrollView>
+</FrameLayout>

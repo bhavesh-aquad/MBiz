@@ -10,6 +10,9 @@ import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
 
 import com.mbiz.adapter.PagerDeals;
+import com.mbiz.fragments.ActivitiesFragement;
+import com.mbiz.fragments.RestaurantFragment;
+import com.mbiz.fragments.TakeawaysFragment;
 
 public class TodaysDealsActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
 
@@ -26,7 +29,9 @@ public class TodaysDealsActivity extends AppCompatActivity implements TabLayout.
             R.drawable.hotel,
             R.drawable.other
     };
-
+    RestaurantFragment restaurantFragment;
+    ActivitiesFragement activitiesFragment;
+    TakeawaysFragment takeawaysFragment;
     //This is our viewPager
     private ViewPager viewPager;
     PagerDeals adapter;
@@ -69,7 +74,10 @@ public class TodaysDealsActivity extends AppCompatActivity implements TabLayout.
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
         //Creating our pager adapter
-        adapter = new PagerDeals(getSupportFragmentManager(), tabLayout.getTabCount());
+        restaurantFragment = new RestaurantFragment();
+        activitiesFragment = new ActivitiesFragement();
+        takeawaysFragment = new TakeawaysFragment();
+        adapter = new PagerDeals(getSupportFragmentManager(), tabLayout.getTabCount(), restaurantFragment, activitiesFragment, takeawaysFragment);
 
         //Adding adapter to pager
         viewPager.setAdapter(adapter);
